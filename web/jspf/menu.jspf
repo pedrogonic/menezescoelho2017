@@ -1,0 +1,136 @@
+    <section class="menu">
+        
+        <article id="nav-button-article">
+            <img id="nav-button" src="<%=request.getContextPath()%>/img/menu_white.png" alt="" onclick="showHideNav();"/>
+        </article>
+        
+        <article id="lang">
+             
+            <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('br')">
+                <img id="BR_flag" src="<%=request.getContextPath()%>/img/BR.png" alt=""/>
+            </input>
+            
+            <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('ar')">
+                <img id="US_flag" src="<%=request.getContextPath()%>/img/AR.png" alt=""/>
+            </input>
+        
+        </article>
+            
+    </section>
+            
+    <section class="nav">
+        <nav>
+            
+            <h1><fmt:message bundle="${text}" key="nav.title"/></h1>
+            
+            <ul>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.top"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.about"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.rsvp"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.msg"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.ceremony"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.party"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.bachelor"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.bestman"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href="<%=request.getContextPath()%>/index.jsp">
+                        <fmt:message bundle="${text}" key="nav.gift"/>
+                    </a>
+                </li>
+                
+            </ul>
+                    
+       </nav>
+                    
+    </section>
+                    
+    <script>
+        
+        /** 
+         * fixing menu up at top
+         */
+        var fixmeTop = $('.menu').offset().top;
+        var menuHeight = $('.menu').height() 
+                + parseInt($('.menu').css('padding-top').replace('px','')) 
+                + parseInt($('.menu').css('padding-bottom').replace('px',''));
+        
+        $(window).scroll(function() {   
+           
+            var currentScroll = $(window).scrollTop();
+
+            if (currentScroll >= fixmeTop) { 
+                
+                $('.menu').css({position: 'fixed',top: '0',left: '0',width:'100%'});
+                $('.nav').css({position: 'fixed',top: menuHeight,left: '0', height: '100%', width: '20%'});
+                
+            } else {$('.menu').css({position: ''});$('.nav').css({position: '', width: '100%' });}
+        
+        });
+        /** end */
+        
+        /** 
+         * closing nav menu on click outside of it
+         */
+        $(document).mouseup(function (e){
+            var container = $(".nav");
+
+            if (!$('#nav-button').is(e.target) && !container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                container.slideUp();
+            }
+        });
+        /** end */
+        
+        function showHideNav() {
+            $(".nav").slideToggle();
+        }
+        
+        $(".link").click(function() {
+            console.log('i');
+            window.location = $(this).find("a").attr("href"); 
+            return false;
+        });
+        
+    </script>

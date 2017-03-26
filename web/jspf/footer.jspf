@@ -1,0 +1,11 @@
+    <section class="footer">
+        
+        <article class="disclaimer">
+            <fmt:message bundle="${text}" key="footer.disclaimer"/>
+        </article>
+        
+        <article class="developed">
+            <fmt:message bundle="${text}" key="footer.developed"/>
+        </article>
+        
+    </section>
