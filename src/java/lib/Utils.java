@@ -12,6 +12,9 @@ public class Utils {
     /** CONFIG */
     
     public static final String BIG_DAY = "2017-11-04";
+    public static final String PERSONAL_EMAIL = "pedrogonic@gmail.com";
+    public static final String EVENT_EMAIL = "menezescoelho2017@gmail.com";
+    public static final String SUBJECT = "menezescoelho2017 hotsite";
     
     /** END */
     

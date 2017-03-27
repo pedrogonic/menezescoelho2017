@@ -1,7 +1,18 @@
-    <section class="menu">
+<%@page import="lib.Utils"%>
+<section class="menu">
         
-        <article id="nav-button-article">
-            <img id="nav-button" src="<%=request.getContextPath()%>/img/icons/menu_white.png" alt="" onclick="showHideNav();"/>
+        <article class="nav-button-article" id="nav-button-menu">
+            <img class="nav-button" id="menu-button" src="<%=request.getContextPath()%>/img/icons/menu_white.png" alt="" onclick="showHideNav();"/>
+        </article>
+        
+        <article class="nav-button-article" id="nav-button-fb">
+            <img class="nav-button" src="<%=request.getContextPath()%>/img/icons/facebook.png" alt=""/>
+        </article>
+        
+        <article class="nav-button-article" id="nav-button-mail">
+            <a href="mailto:<%=Utils.EVENT_EMAIL%>?Subject=<%=Utils.SUBJECT%>" target="_top">
+                <img class="nav-button" src="<%=request.getContextPath()%>/img/icons/email.png" alt=""/>
+            </a>
         </article>
         
         <article id="lang">
@@ -26,25 +37,25 @@
             <ul>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.top"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/about.jsp">
                         <fmt:message bundle="${text}" key="nav.about"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.rsvp"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>//jspindex.jsp">
                         <fmt:message bundle="${text}" key="nav.msg"/>
                     </a>
                 </li>
@@ -56,7 +67,7 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.party"/>
                     </a>
                 </li>
@@ -68,13 +79,13 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.bestman"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.gift"/>
                     </a>
                 </li>
@@ -115,20 +126,24 @@
         $(document).mouseup(function (e){
             var container = $(".nav");
 
-            if (!$('#nav-button').is(e.target) && !container.is(e.target) // if the target of the click isn't the container...
+            if (!$('.nav-button').is(e.target) 
+                && !container.is(e.target) // if the target of the click isn't the container...
                 && container.has(e.target).length === 0) // ... nor a descendant of the container
             {
                 container.slideUp();
+                $('#nav-button-fb').hide('slide');
+                $('#nav-button-mail').hide('slide');
             }
         });
         /** end */
         
         function showHideNav() {
             $(".nav").slideToggle();
+            $('#nav-button-fb').toggle('slide');
+            $('#nav-button-mail').toggle('slide');
         }
         
-        $(".link").click(function() {
-            console.log('i');
+        $(".menuLink").click(function() {
             window.location = $(this).find("a").attr("href"); 
             return false;
         });
