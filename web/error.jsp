@@ -14,7 +14,7 @@
         <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <img id="error_page_img" src="<%=request.getContextPath()%>/img/error.png" alt=""/>
+        <img id="error_page_img" src="<%=request.getContextPath()%>/img/icons/error.png" alt=""/>
         <h1 id="error_title"><fmt:message bundle="${text}" key="error.title"/></h1>
         <p id="error_instructions"><fmt:message bundle="${text}" key="error.instructions"/></p>
     </body>

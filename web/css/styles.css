@@ -65,6 +65,37 @@ body {
     grid-column: left / end;
 }
 
+.floater_logo {
+    background-color: rgba(0,0,0,0);
+    color: white;
+    position: absolute;
+    text-align: center;
+    display:table;
+    font-family: serif;
+}
+
+.floater_logo > article {
+    display: none;
+    vertical-align: middle;
+}
+
+.logo_title {
+    font-size: 5em;
+    font-family: cursive;
+}
+
+.logo_top > img {
+    width: 200px;
+}
+
+.logo_middle > img {
+    width: 200px;
+}
+
+.logo_bot > img {
+    width: 200px;
+}
+
 .banner_img {
     width: 100%;
 }

@@ -1,17 +1,17 @@
     <section class="menu">
         
         <article id="nav-button-article">
-            <img id="nav-button" src="<%=request.getContextPath()%>/img/menu_white.png" alt="" onclick="showHideNav();"/>
+            <img id="nav-button" src="<%=request.getContextPath()%>/img/icons/menu_white.png" alt="" onclick="showHideNav();"/>
         </article>
         
         <article id="lang">
              
             <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('br')">
-                <img id="BR_flag" src="<%=request.getContextPath()%>/img/BR.png" alt=""/>
+                <img id="BR_flag" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
             </input>
             
             <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('ar')">
-                <img id="US_flag" src="<%=request.getContextPath()%>/img/AR.png" alt=""/>
+                <img id="US_flag" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
             </input>
         
         </article>

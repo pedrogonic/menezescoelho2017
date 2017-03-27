@@ -2,6 +2,8 @@
 
 <section class="banner">
     
+    
+    
     <img class="banner_img" src="<%=request.getContextPath()%>/img/banner.jpg" alt=""/>
     
     <script>
@@ -10,4 +12,74 @@
         
     </script>
     
+</section>  
+    
+<section class="floater_logo">
+    
+        <article>
+
+            <article class="logo_top">
+                <img src="<%=request.getContextPath()%>/img/filigranas/top.png" alt=""/>
+            </article>
+            
+            <article class="logo_date">
+                <c:out value="${bigDay}"/>
+            </article>
+
+            <article class="logo_title">
+                <fmt:message bundle="${text}" key="page.title"/>
+            </article>
+
+            <article class="logo_middle">
+                <img src="<%=request.getContextPath()%>/img/filigranas/mid.png" alt=""/>
+                <!--img src="<%=request.getContextPath()%>/img/filigranas/separadores-de-texto5.gif" alt=""/-->
+            </article>
+            
+            <article class="logo_left">
+                <fmt:message bundle="${text}" key="banner.left"/>
+                <c:out value="${' '}"/><c:out value="${daysToGo}"/><c:out value="${' '}"/>
+                <fmt:message bundle="${text}" key="banner.days"/>
+            </article>
+
+            <article class="logo_bot">
+                <img src="<%=request.getContextPath()%>/img/filigranas/bot.png" alt=""/>
+            </article>
+            
+        </article>
+        
+        <script>
+            
+            function centerFloaterLogo() {
+                
+                /**
+                 * center horizontally
+                 */
+                var windowWidth = $(window).width();
+                var floaterLogoWidth = $('.floater_logo').width();
+                var floaterLogoLeft = (windowWidth - floaterLogoWidth)/2;
+                $('.floater_logo').css({left:floaterLogoLeft+'px'});
+                
+                /**
+                 * center vertically
+                 */
+                var bannerHeight = $('.banner').height();
+                var floaterLogoHeight = $('.floater_logo').height();
+                var floaterLogoTop = (bannerHeight - floaterLogoHeight)/2;
+                $('.floater_logo').css({top: floaterLogoTop+'px'});
+                
+                $('.floater_logo > article').show('fade')
+            }
+            
+            centerFloaterLogo();
+            
+            $(document).ready(centerFloaterLogo);
+            
+            $(window).on('resize', function(){
+                
+                centerFloaterLogo();
+                
+            });
+            
+        </script>
+        
 </section>
