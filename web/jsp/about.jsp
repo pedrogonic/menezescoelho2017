@@ -17,11 +17,15 @@
             
             <%@include file="/jspf/menu.jspf"%>
 
+            <section class="first"></section>
+            
             <section class="second">
                 <p>2</p>
                 <fmt:message bundle="${text}" key="ipsum"/>
             </section>
 
+            <section class="third"></section>
+            
             <%@include file="/jspf/footer.jspf"%>
             
         </section>

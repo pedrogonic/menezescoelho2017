@@ -9,16 +9,9 @@ body {
     height: 100%;
 }
 
-#title {
-    text-align: center;
-    color: white;
-    font-size: 75pt;
-    background: rgb(181,189,200); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    height: 150px;
-    margin: 0;
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 .content {
@@ -39,6 +32,7 @@ body {
     grid-column-start: left;
     grid-row-start: main;
     padding: 20px;
+    background-color: rgba(241,241,241,1);
 }
 
 .second {
@@ -51,6 +45,7 @@ body {
     grid-column-start: right;
     grid-row-start: main;
     padding: 20px;
+    background-color: rgba(241,241,241,1);
 }
 
 /**
@@ -142,12 +137,9 @@ body {
     cursor: pointer;
 }
 
-#US_flag {
+.flag {
     height: 30px;
-}
-
-#BR_flag {
-    height: 30px;
+    cursor: pointer;
 }
 
 /**
@@ -160,6 +152,7 @@ body {
     color: white;
     grid-column: left;
     grid-row: main;
+    z-index: 99;
 }
 
 .nav h1 {
@@ -210,11 +203,12 @@ body {
  */
 
 .footer {
-    color: grey;
+    color: rgba(143, 143, 143, 1);
     border-top: 1px black solid;
     grid-column-start: left;
     grid-column-end: end;
     grid-row: footer;
+    background-color: rgba(241,241,241,1);
 }
 
 .disclaimer {
@@ -294,7 +288,7 @@ body {
  */
 
 fieldset {
-    background: lightgray;
+    background: rgba(241,241,241,1);
     margin-top: 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;

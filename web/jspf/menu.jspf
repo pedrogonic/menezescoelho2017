@@ -17,12 +17,12 @@
         
         <article id="lang">
              
-            <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('br')">
-                <img id="BR_flag" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
+            <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('pt_BR')">
+                <img class="flag" id="BR_flag" onclick="changeLocale('pt_BR')" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
             </input>
             
-            <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('ar')">
-                <img id="US_flag" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
+            <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('es_AR')">
+                <img class="flag" id="AR_flag" onclick="changeLocale('es_AR')" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
             </input>
         
         </article>
