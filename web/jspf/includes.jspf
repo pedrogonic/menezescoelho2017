@@ -12,10 +12,9 @@
 <%
     pageContext.setAttribute("bigDay", Utils.READABLE_BIG_DAY);
     pageContext.setAttribute("daysToGo", Utils.daysToGo());
-    
+    pageContext.setAttribute("mobile", Utils.isMobile(request));
 %>
-<c:set var="bigDay" value="${bigDay}" scope="session" />
-<c:set var="daysToGo" value="${daysToGo}" scope="session" />
+<c:set var="mobile" value="${mobile}" scope="session" />
 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico" />
         

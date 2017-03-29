@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import javax.servlet.http.HttpServletRequest;
 
 
 public class Utils {
@@ -38,6 +39,12 @@ public class Utils {
             e.printStackTrace();
             return 0;
         }
+    }
+    
+    public static boolean isMobile(HttpServletRequest request) {
+        
+        return request.getHeader("User-Agent").toLowerCase().contains("mobi");
+        
     }
     
 }

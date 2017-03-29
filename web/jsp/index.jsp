@@ -20,6 +20,8 @@
             <section class="second">
                 <h2><fmt:message bundle="${text}" key="page.index.welcome"/></h2>
                 <h1 class="nick"><fmt:message bundle="${text}" key="page.construction"/></h1>
+                
+                <p><c:out value='${mobile ? "Mobile" : "Desktop"}'/></p>
             </section>
 
             <%@include file="/jspf/footer.jspf"%>
