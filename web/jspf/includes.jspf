@@ -12,13 +12,17 @@
 <%
     pageContext.setAttribute("bigDay", Utils.READABLE_BIG_DAY);
     pageContext.setAttribute("daysToGo", Utils.daysToGo());
-    pageContext.setAttribute("mobile", Utils.isMobile(request));
+    boolean mobile = Utils.isMobile(request);
+    pageContext.setAttribute("mobile", mobile);
 %>
 <c:set var="mobile" value="${mobile}" scope="session" />
 
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico" />
         
 <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" type="text/css"/>
+<% if (mobile) { %>
+<link href="<%=request.getContextPath()%>/css/mobile-styles.css" rel="stylesheet" type="text/css"/>
+<% } %>
 
 <script src="<%=request.getContextPath()%>/js/jquery-2.1.0.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.4.min.js" type="text/javascript"></script>

@@ -67,7 +67,7 @@
                 var floaterLogoTop = (bannerHeight - floaterLogoHeight)/2;
                 $('.floater_logo').css({top: floaterLogoTop+'px'});
                 
-                $('.floater_logo > article').show('fade')
+                $('.floater_logo > article').show('fade');
             }
             
             centerFloaterLogo();

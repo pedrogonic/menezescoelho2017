@@ -18,11 +18,11 @@
         <article id="lang">
              
             <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('pt_BR')">
-                <img class="flag" id="BR_flag" onclick="changeLocale('pt_BR')" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
+                <img class="flag" id="flag_pt_BR" onclick="changeLocale('pt_BR')" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
             </input>
             
             <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('es_AR')">
-                <img class="flag" id="AR_flag" onclick="changeLocale('es_AR')" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
+                <img class="flag" id="flag_es_AR" onclick="changeLocale('es_AR')" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
             </input>
         
         </article>
@@ -55,13 +55,13 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>//jspindex.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.msg"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.ceremony"/>
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/index.jsp">
+                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
                         <fmt:message bundle="${text}" key="nav.bachelor"/>
                     </a>
                 </li>
@@ -101,21 +101,36 @@
         /** 
          * fixing menu up at top
          */
-        var fixmeTop = $('.menu').offset().top;
-        var menuHeight = $('.menu').height() 
-                + parseInt($('.menu').css('padding-top').replace('px','')) 
-                + parseInt($('.menu').css('padding-bottom').replace('px',''));
+        var fixmeTop = $('.menu').position().top;
+        
         
         $(window).scroll(function() {   
+           
+           var menuHeight = $('.menu').position().top
+                + $('.menu').height() 
+                + parseInt($('.menu').css('padding-top').replace('px','')) 
+                + parseInt($('.menu').css('padding-bottom').replace('px',''));
            
             var currentScroll = $(window).scrollTop();
 
             if (currentScroll >= fixmeTop) { 
                 
-                $('.menu').css({position: 'fixed',top: '0',left: '0',width:'100%'});
-                $('.nav').css({position: 'fixed',top: menuHeight,left: '0', height: '100%', width: '20%'});
+//                $('.menu').css({position: 'fixed',top: '0',left: '0',width:'100%'});
+//                $('.nav').css({position: 'fixed',top: menuHeight,left: '0', height: '100%', width: '20%'});
+                $('.menu').addClass('fixed');
+                $('.nav').addClass('fixed');
+                menuHeight = $('.menu').position().top
+                + $('.menu').height() 
+                + parseInt($('.menu').css('padding-top').replace('px','')) 
+                + parseInt($('.menu').css('padding-bottom').replace('px',''));
+                $('.nav').css({top: menuHeight});
                 
-            } else {$('.menu').css({position: ''});$('.nav').css({position: '', width: '100%' });}
+            } //else {$('.menu').css({position: ''});$('.nav').css({position: '', width: '100%' });}
+            else {
+                $('.menu').removeClass('fixed');
+                $('.nav').removeClass('fixed');
+                $('.nav').css({top: menuHeight});
+            }
         
         });
         /** end */

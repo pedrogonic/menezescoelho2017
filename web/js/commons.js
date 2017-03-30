@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
     $('#lang_'+lang).attr('checked',true);
+    $('#flag_'+lang).addClass('imgSelected');
 });
 
 function changeLocale(langSel) {

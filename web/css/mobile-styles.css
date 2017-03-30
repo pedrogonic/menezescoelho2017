@@ -1,0 +1,98 @@
+/**
+ *   Windows layout
+ */
+
+/*html {
+    background-color: rgba(143, 143, 143, 1);
+}*/
+
+.first {
+    display:none;
+}
+
+.second {
+    font-size: 3vh;
+}
+
+.third {
+    display:none;
+}
+
+/**
+ *   Menu
+ */
+
+.menu {
+    height: 100px;
+}
+
+.nav {
+    font-size: 3vh;
+}
+
+.menu.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+}
+
+.nav.fixed {
+    position: fixed;
+    left: 0;
+    height: inherit;
+    width: 100%;
+}
+
+.nav-button-article {
+    width: 100px;
+}
+
+.nav-button {
+    height: 100px;
+}
+
+input[type=radio] {
+    display:none;
+}
+
+.flag {
+    height: 100px;
+    opacity: .6;
+}
+
+.imgSelected {
+    border: 2px solid white;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: white;
+    opacity: 1;
+}
+
+/**
+ *   Nav
+ */
+
+.nav {
+    position: absolute;
+    width: 100%;
+}
+
+/**
+ *   Footer
+ */
+
+.footer {
+    font-size: .9em;
+    background-color: white;
+}
+
+.disclaimer {
+    float:none;
+}
+
+.developed {
+    float: none;
+    margin-right: 0;
+    margin-left: 0;
+}
