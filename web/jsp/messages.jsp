@@ -20,10 +20,12 @@
             <section class="first"></section>
             
             <section class="second">
-                <h2><fmt:message bundle="${text}" key="page.index.welcome"/><span id="fbName"></span>!</h2>
+                
+                    
+                
                 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                 </fb:login-button>
-                <!--article id="fbImg"></article-->
+                
             </section>
 
             <section class="third"></section>

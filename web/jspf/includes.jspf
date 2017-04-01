@@ -11,12 +11,31 @@
 <fmt:setBundle basename="lang.text" var="text" scope="session" />
 
 <%
+    
     pageContext.setAttribute("bigDay", Utils.READABLE_BIG_DAY);
+    
     pageContext.setAttribute("daysToGo", Utils.daysToGo());
+    
     boolean mobile = Utils.isMobile(request);
     pageContext.setAttribute("mobile", mobile);
+    
     String fbID = Secret.FB_APP_ID;
     pageContext.setAttribute("fbID", fbID);
+    
+    String fbUserID = (String) session.getAttribute("fbUserID");
+    pageContext.setAttribute("fbUserID", fbUserID);
+    
+    String fbName = (String) session.getAttribute("fbName");
+    pageContext.setAttribute("fbName", fbName);
+    
+    String fbEmail = (String) session.getAttribute("fbEmail");
+    pageContext.setAttribute("fbEmail", fbEmail);
+    
+    String fbUserImg = (String) session.getAttribute("fbUserImg");
+    if (fbUserImg == null)
+        fbUserImg = request.getContextPath() + "/img/icons/fb-no-profile.jpg";
+    pageContext.setAttribute("fbUserImg", fbUserImg);
+    
 %>
 <c:set var="mobile" value="${mobile}" scope="session" />
 
@@ -31,10 +50,16 @@
 <script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.4.min.js" type="text/javascript"></script>
 
 <script>
+    
     var lang = '${lang}';
     var contextPath = '<%=request.getContextPath()%>';
     var requestURI = '<%=request.getRequestURI()%>';
     var fbID = '${fbID}';
+    var fbUserID = '${fbUserID}';
+    var fbName = '${fbName}';
+    var fbEmail = '${fbEmail}';
+    var fbUserImg = '${userLoggedIn}';
+    
 </script>
 
 <script src="<%=request.getContextPath()%>/js/commons.js" type="text/javascript"></script>
