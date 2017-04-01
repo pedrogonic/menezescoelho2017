@@ -21,9 +21,9 @@
             
             <section class="second">
                 <h2><fmt:message bundle="${text}" key="page.index.welcome"/><span id="fbName"></span>!</h2>
-                <h1 class="nick"><fmt:message bundle="${text}" key="page.construction"/></h1>
-                
-                <p><fmt:message bundle="${text}" key="page.version"/>: <c:out value='${mobile ? "Mobile" : "Desktop"}'/></p>
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                </fb:login-button>
+                <!--article id="fbImg"></article-->
             </section>
 
             <section class="third"></section>
