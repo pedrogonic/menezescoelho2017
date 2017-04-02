@@ -37,55 +37,55 @@
             <ul>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.INDEX%>'>
                         <fmt:message bundle="${text}" key="nav.top"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/about.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.ABOUT%>'>
                         <fmt:message bundle="${text}" key="nav.about"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.RSVP%>'>
                         <fmt:message bundle="${text}" key="nav.rsvp"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/messages.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.MSG%>'>
                         <fmt:message bundle="${text}" key="nav.msg"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.CEREMONY%>'>
                         <fmt:message bundle="${text}" key="nav.ceremony"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.PARTY%>'>
                         <fmt:message bundle="${text}" key="nav.party"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.BACHELOR%>'>
                         <fmt:message bundle="${text}" key="nav.bachelor"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
-                        <fmt:message bundle="${text}" key="nav.bestman"/>
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.BESTMEN%>'>
+                        <fmt:message bundle="${text}" key="nav.bestmen"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href="<%=request.getContextPath()%>/jsp/index.jsp">
+                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.GIFT%>'>
                         <fmt:message bundle="${text}" key="nav.gift"/>
                     </a>
                 </li>
