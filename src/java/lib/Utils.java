@@ -1,8 +1,6 @@
 package lib;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +51,6 @@ public class Utils {
             return ChronoUnit.DAYS.between(now, bigDay);
             
         } catch(Exception e) {
-            e.printStackTrace();
             return 0;
         }
     }
