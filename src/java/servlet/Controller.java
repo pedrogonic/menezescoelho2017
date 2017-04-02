@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import lib.Utils;
 
 /**
@@ -49,6 +50,17 @@ public class Controller extends HttpServlet {
                 , HttpServletResponse response
                 , Utils.Page page)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
+        session.setAttribute("mobile", Utils.isMobile(request));
+        
+        session.setAttribute("daysToGo", Long.toString(Utils.daysToGo()));
+        
+        String fbUserImg = (String) session.getAttribute("fbUserImg");
+        if (fbUserImg == null)
+            fbUserImg = request.getContextPath() + "/img/icons/fb-no-profile.jpg";
+        session.setAttribute("fbUserImg", fbUserImg);
         
         response.sendRedirect(page.getPageName());
         
