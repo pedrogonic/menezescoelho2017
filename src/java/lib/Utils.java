@@ -25,6 +25,23 @@ public class Utils {
     
     public static final String READABLE_BIG_DAY = LocalDate.parse(BIG_DAY, DF).format(READABLE_DF);
     
+    public enum Page implements AutoCloseable {
+        INDEX ("jsp/index.jsp"), ABOUT ("jsp/about.jsp"), RSVP ("jsp/index.jsp")
+        , MSG ("jsp/messages.jsp"), CEREMONY ("jsp/index.jsp"), PARTY ("jsp/index.jsp")
+        , BACHELOR ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), GIFT ("jsp/index.jsp")
+        , ERROR ("jsp/error.jsp");
+        
+        private final String pageName;
+        
+        private Page(String pageName) { this.pageName = pageName;}
+        
+        
+        public String getPageName() { return this.pageName; }
+        
+        @Override
+        public void close() {}
+    }
+            
     
     public static long daysToGo() {
         try {
