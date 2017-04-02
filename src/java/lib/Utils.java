@@ -15,6 +15,8 @@ public class Utils {
     public static final String EVENT_EMAIL = "menezescoelho2017@gmail.com";
     public static final String SUBJECT = "menezescoelho2017 hotsite";
     
+    public static final dao.DAOFactory.Type DEFAULT_DB = dao.DAOFactory.Type.POSTGRES;
+    
     /** END */
     
     

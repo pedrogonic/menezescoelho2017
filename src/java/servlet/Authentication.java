@@ -5,6 +5,9 @@
  */
 package servlet;
 
+import dao.DAOFactory;
+import dao.UserDAO;
+import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,10 +28,19 @@ public class Authentication extends HttpServlet {
         
         response.setContentType("text;charset=UTF-8");
         
-        request.getSession().setAttribute("fbUserID", request.getParameter("fbUserID"));
-        request.getSession().setAttribute("fbName", request.getParameter("fbName"));
-        request.getSession().setAttribute("fbEmail", request.getParameter("fbEmail"));
-        request.getSession().setAttribute("fbUserImg", request.getParameter("fbUserImg"));
+        User user = new User(request.getParameter("fbUserID")
+                            , request.getParameter("fbName")
+                            , request.getParameter("fbEmail")
+                            , request.getParameter("fbUserImg"));
+        
+        UserDAO userDAO = DAOFactory.getDAOFactory().getUserDAO();
+        user = userDAO.insertUpdateUser(user);
+        
+        request.getSession().setAttribute("userID", user.getUserID());
+        request.getSession().setAttribute("fbUserID", user.getFbUserID());
+        request.getSession().setAttribute("fbName", user.getUserName());
+        request.getSession().setAttribute("fbEmail", user.getUserEmail());
+        request.getSession().setAttribute("fbUserImg", user.getUserPicURL());
         
         try (PrintWriter out = response.getWriter()) {
             out.println("Login successful for user: " + request.getParameter("fbUserID"));

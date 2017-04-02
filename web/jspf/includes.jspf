@@ -31,6 +31,12 @@
     String fbUserID = (String) session.getAttribute("fbUserID");
     pageContext.setAttribute("fbUserID", fbUserID);
     
+    int userID = 0;
+    try{
+        userID = (Integer)session.getAttribute("userID");
+    } catch(Exception e) {}  
+    pageContext.setAttribute("userID", userID);
+    
     String fbName = (String) session.getAttribute("fbName");
     pageContext.setAttribute("fbName", fbName);
     
