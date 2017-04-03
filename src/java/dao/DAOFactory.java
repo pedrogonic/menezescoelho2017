@@ -17,7 +17,7 @@ public abstract class DAOFactory {
     }
     
     public static DAOFactory getDAOFactory() {
-        return getDAOFactory(Type.POSTGRES);
+        return getDAOFactory(Utils.DEFAULT_DB);
     }
     
     public static DAOFactory getDAOFactory(Type type){

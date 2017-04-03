@@ -2,10 +2,13 @@ package dao.postgres;
 
 import dao.MessageDAO;
 import dto.Message;
+import dto.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@SuppressWarnings("CallToPrintStackTrace")
 public class PostgresMessageDAO implements MessageDAO {
 
     private java.sql.Connection con;
@@ -31,9 +34,26 @@ public class PostgresMessageDAO implements MessageDAO {
     }
     
     @Override
+    public Message getMessage(int id) {
+        //TODO
+        return new Message();
+    }
+    
+    @Override
     public List<Message> getAllMessages() {
         //TODO
         return new ArrayList<>();
+    }
+    
+    @Override
+    public List<Message> getAllMessages(User user) {
+        
+        List<Message> list =  getAllMessages();
+        
+        list.forEach((msg) -> { msg.isTrashable(user); });
+        
+        return list;
+        
     }
     
     @Override

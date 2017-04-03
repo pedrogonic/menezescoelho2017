@@ -7,13 +7,16 @@ public class User {
     private String userName;
     private String userEmail;
     private String userPicURL;
-
     
-    public User(int userID, String fbUserID) {
-        this.userID = userID;
-        this.fbUserID = fbUserID;
-    }
 
+    /**
+     * Full constructor
+     * @param userID
+     * @param fbUserID
+     * @param userName
+     * @param userEmail
+     * @param userPicURL 
+     */
     public User(int userID, String fbUserID, String userName
             , String userEmail, String userPicURL) {
         this.userID = userID;
@@ -23,12 +26,28 @@ public class User {
         this.userPicURL = userPicURL;
     }
 
+    /**
+     * Constructor for creating a new user
+     * @param fbUserID
+     * @param userName
+     * @param userEmail
+     * @param userPicURL 
+     */
     public User(String fbUserID, String userName
             , String userEmail, String userPicURL) {
         this.fbUserID = fbUserID;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPicURL = userPicURL;
+    }
+    
+    /**
+     * Constructor for creating and deleting a message
+     * @param userID
+     * @param fbUserID 
+     */
+    public User(int userID) {
+        this.userID = userID;
     }
     
     public int getUserID() {
