@@ -76,11 +76,19 @@ public class PostgresUserDAO implements UserDAO {
                 
             }
             
-            //TODO SAVE LOGIN TIME
+            ps.close();
             
-        } catch (Exception e) { e.printStackTrace(); }
+            String query = "INSERT INTO " + Secret.LOGIN_TABLE
+                            + " (userID)"
+                            + " VALUES (?);";
+            
+            ps = con.prepareStatement(query);
+            ps.setInt(1, user.getUserID());
+            ps.executeUpdate();
+
+        } catch (SQLException e) { e.printStackTrace(); }
         finally {
-            if (ps != null) { try {ps.close();}catch(Exception e){}}
+            if (ps != null) { try {ps.close();}catch(SQLException e){}}
         }
         
         return user;
@@ -97,7 +105,7 @@ public class PostgresUserDAO implements UserDAO {
         try {
             
             String query = "SELECT * FROM " + Secret.USERS_TABLE
-                        + " WHERE userID = ?;";
+                        + " WHERE fbUserID = ?;";
             
             ps = con.prepareStatement(query);
             ps.setString(1, fbUserID);
@@ -109,10 +117,10 @@ public class PostgresUserDAO implements UserDAO {
                         , rs.getString(4), rs.getString(5));
             }
             
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (SQLException e) { e.printStackTrace(); }
         finally {
-            if (ps != null) { try {ps.close();}catch(Exception e){}}
-            if (rs != null) { try {rs.close();}catch(Exception e){}}
+            if (ps != null) { try {ps.close();}catch(SQLException e){}}
+            if (rs != null) { try {rs.close();}catch(SQLException e){}}
         }
         
         return user;
