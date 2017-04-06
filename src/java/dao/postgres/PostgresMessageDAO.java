@@ -2,7 +2,6 @@ package dao.postgres;
 
 import dao.MessageDAO;
 import dto.Message;
-import dto.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +10,7 @@ import java.util.List;
 @SuppressWarnings("CallToPrintStackTrace")
 public class PostgresMessageDAO implements MessageDAO {
 
-    private java.sql.Connection con;
-    
-    public PostgresMessageDAO() {
-        try {
-            con = PostgresDAOFactory.getConnection();
-        } catch(Exception e) {}
-    }
+    private final java.sql.Connection con;
     
     public PostgresMessageDAO(java.sql.Connection con) { this.con = con; }
     
@@ -43,17 +36,6 @@ public class PostgresMessageDAO implements MessageDAO {
     public List<Message> getAllMessages() {
         //TODO
         return new ArrayList<>();
-    }
-    
-    @Override
-    public List<Message> getAllMessages(User user) {
-        
-        List<Message> list =  getAllMessages();
-        
-        list.forEach((msg) -> { msg.isTrashable(user); });
-        
-        return list;
-        
     }
     
     @Override

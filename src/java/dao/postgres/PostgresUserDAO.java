@@ -12,13 +12,7 @@ import lib.Secret;
 @SuppressWarnings("CallToPrintStackTrace")
 public class PostgresUserDAO implements UserDAO {
     
-    private java.sql.Connection con;
-    
-    public PostgresUserDAO() {
-        try {
-            con = PostgresDAOFactory.getConnection();
-        } catch(Exception e) {}
-    }
+    private final java.sql.Connection con;
     
     public PostgresUserDAO(java.sql.Connection con) { this.con = con; }
     
@@ -29,7 +23,7 @@ public class PostgresUserDAO implements UserDAO {
         
         try {
             
-            User existingUser = getUser(user.getFbUserID());
+            User existingUser = getUserByFBID(user.getFbUserID());
             
             if (existingUser != null) {
                 
@@ -96,8 +90,41 @@ public class PostgresUserDAO implements UserDAO {
         return user;
     }
     
+     @Override
+    public User getUser(int userID) {
+        
+        User user = null;
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+            
+            String query = "SELECT * FROM " + Secret.USERS_TABLE
+                        + " WHERE userID = ?;";
+            
+            ps = con.prepareStatement(query);
+            ps.setInt(1, userID);
+            
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3)
+                        , rs.getString(4), rs.getString(5));
+            }
+            
+        } catch (SQLException e) { e.printStackTrace(); }
+        finally {
+            if (ps != null) { try {ps.close();}catch(SQLException e){}}
+            if (rs != null) { try {rs.close();}catch(SQLException e){}}
+        }
+        
+        return user;
+        
+    }
+    
     @Override
-    public User getUser(String fbUserID) {
+    public User getUserByFBID(String fbUserID) {
         
         User user = null;
         

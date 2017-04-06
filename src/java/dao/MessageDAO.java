@@ -10,7 +10,6 @@ public interface MessageDAO extends AutoCloseable {
     public Message.DeleteResult deleteMessage(Message message);
     public Message getMessage(int id);
     public List<Message> getAllMessages();
-    public List<Message> getAllMessages(User user);
     
     @Override
     public void close();

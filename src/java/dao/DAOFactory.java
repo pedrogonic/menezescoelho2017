@@ -31,10 +31,6 @@ public abstract class DAOFactory {
     
     public abstract MessageDAO getMessageDAO();
     
-    public abstract MessageDAO getMessageDAO(java.sql.Connection con);
-    
     public abstract UserDAO getUserDAO();
-    
-    public abstract UserDAO getUserDAO(java.sql.Connection con);
     
 }
