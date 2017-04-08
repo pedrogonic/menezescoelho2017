@@ -22,7 +22,7 @@ public class Authentication extends HttpServlet {
         
         user = UserServices.authenticate(user);
         
-        UserServices.setUserToSession(user, request.getSession());
+        UserServices.setUserParamsToSession(user, request.getSession());
         
         try (PrintWriter out = response.getWriter()) {
             out.println("Login successful for user: " + request.getParameter("fbUserID"));

@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 public class Message {
     
-    private int messageID;
+    private int messageID = 0;
+    private User user;
     private String color;
     private String body;
     private String reply;
-    private User user;
     private LocalDateTime time;
     private boolean trashable;
 
@@ -22,20 +22,28 @@ public class Message {
     /**
      * Full constructor
      * @param messageID
+     * @param user
      * @param color
      * @param body
      * @param reply
      * @param time 
      */
-    public Message(int messageID, String color
+    public Message(int messageID, User user, String color
             , String body, String reply, LocalDateTime time) {
         this.messageID = messageID;
+        this.user = user;
         this.color = color;
         this.body = body;
         this.reply = reply;
         this.time = time;
     }
     
+    public Message(User user, String color, String body) {
+        this.user = user;
+        this.color = color;
+        this.body = body;
+    }
+     
     /**
      * Constructor for deleting a message
      * @param messageID

@@ -44,7 +44,6 @@ public class User {
     /**
      * Constructor for creating and deleting a message
      * @param userID
-     * @param fbUserID 
      */
     public User(int userID) {
         this.userID = userID;

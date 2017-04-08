@@ -6,11 +6,24 @@ import dao.UserDAO;
 import dto.Message;
 import dto.User;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class MessageServices {
-     
+    
     /**
-     * 
+     * Method for posting or replying.
+     * @param message to be inserted or updated
+     * @return complete message object inserted/updated
+     */
+    public static Message postMessage(Message message) {
+        
+        return DAOFactory.getDAOFactory().getMessageDAO().insertUpdateMessage(message);
+        
+    }
+    
+    /**
+     * Get all messages without a login.
      * @return list of all messages
      */
     public static List<Message> getAllMessages() {
@@ -28,7 +41,8 @@ public class MessageServices {
     }
     
     /**
-     * 
+     * Get all messages, indicating each of the logged user's messages, 
+     * allowing them to trash them
      * @param user
      * @return list of all messages with the boolean trashable set
      */
@@ -40,4 +54,47 @@ public class MessageServices {
         
     }
 
+    /**
+     * Utility message method to get the object from request parameters.
+     * Used to get message from request and insert/delete it.
+     * @param request
+     * @return message
+     */
+    public static Message getMessageFromRequest(HttpServletRequest request) {
+
+        String body = request.getParameter("body");
+        String reply = request.getParameter("reply");
+        User user = UserServices.getUserFromRequest(request);
+        
+        if (body != null && !body.equals("")) {
+            
+            return new Message(user
+                                , request.getParameter("color")
+                                , request.getParameter("body")
+                        );
+            
+        } else if (reply != null && !reply.equals("")) {
+            
+            Message message = DAOFactory.getDAOFactory().getMessageDAO()
+                    .getMessage(Integer.parseInt(request.getParameter("messageID")));
+            message.setReply(reply);
+            
+            return message;
+            
+        } else return null;
+                
+    }
+    
+    /**
+     * Utility message method to set a posted or replied message to session.
+     * @param message
+     * @param action -> modifier to name of attribute set in session
+     * @param session
+     */
+    public static void setMessageToSession(Message message, String action, HttpSession session) {
+        
+        session.setAttribute(action + "Message", message);
+        
+    }
+    
 }
