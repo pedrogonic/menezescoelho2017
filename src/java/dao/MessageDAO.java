@@ -1,7 +1,6 @@
 package dao;
 
 import dto.Message;
-import dto.User;
 import java.util.List;
 
 public interface MessageDAO extends AutoCloseable {
