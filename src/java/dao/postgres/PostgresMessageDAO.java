@@ -89,7 +89,8 @@ public class PostgresMessageDAO implements MessageDAO {
             
             try {
                 
-                String query = "DELETE FROM " + Secret.MESSAGES_TABLE
+                String query = "UPDATE " + Secret.MESSAGES_TABLE
+                            + " SET deleted = 1"
                             + " WHERE messageID = ?;";
                 
                 ps = con.prepareStatement(query);
@@ -124,7 +125,7 @@ public class PostgresMessageDAO implements MessageDAO {
                             + " ,reply"
                             + " ,messageTime"
                             + ") FROM " + Secret.MESSAGES_TABLE
-                            + " WHERE messageID = ?;";
+                            + " WHERE messageID = ? AND deleted = 0;";
             
             ps = con.prepareStatement(query);
             ps.setInt(1, messageID);
@@ -167,7 +168,8 @@ public class PostgresMessageDAO implements MessageDAO {
                             + " ,body"
                             + " ,reply"
                             + " ,messageTime"
-                            + ") FROM " + Secret.MESSAGES_TABLE + ";";
+                            + ") FROM " + Secret.MESSAGES_TABLE
+                            + " WHERE deleted = 0;";
 
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();

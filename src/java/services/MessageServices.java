@@ -26,7 +26,7 @@ public class MessageServices {
      * Get all messages without a login.
      * @return list of all messages
      */
-    public static List<Message> getAllMessages() {
+    private static List<Message> getAllMessages() {
         
         DAOFactory daoFactory = DAOFactory.getDAOFactory();
         
@@ -49,7 +49,7 @@ public class MessageServices {
     public static List<Message> getAllMessages(User user) {
         
         List<Message> list = getAllMessages();
-        list.forEach((msg) -> { msg.isTrashable(user); });
+        list.forEach((msg) -> { msg.setTrashable(user); });
         return list;
         
     }

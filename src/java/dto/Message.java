@@ -10,7 +10,7 @@ public class Message {
     private String body;
     private String reply;
     private LocalDateTime time;
-    private boolean trashable;
+    private boolean trashable = false;
 
     public static enum DeleteResult{
         DELETED, NOT_DELETED, DENIED 
@@ -52,17 +52,6 @@ public class Message {
     public Message(int messageID, User user) {
         this.messageID = messageID;
         this.user = user;
-    }
-
-    public boolean isTrashable(Message msg) {
-        this.trashable = (this.messageID == msg.getMessageID() 
-                && this.getUser().getUserID() == msg.getUser().getUserID());
-        return this.trashable;
-    }
-    
-    public boolean isTrashable(User user) {
-        this.trashable = (this.getUser().getUserID() == user.getUserID());
-        return this.trashable;
     }
     
     public int getMessageID() {
@@ -119,6 +108,19 @@ public class Message {
 
     public void setTrashable(boolean trashable) {
         this.trashable = trashable;
+    }
+    
+    public boolean setTrashable(Message msg) {
+        if (msg != null)
+            this.trashable = (this.messageID == msg.getMessageID() 
+                    && this.getUser().getUserID() == msg.getUser().getUserID());
+        return this.trashable;
+    }
+    
+    public boolean setTrashable(User user) {
+        if (user != null)
+            this.trashable = (this.getUser().getUserID() == user.getUserID());
+        return this.trashable;
     }
     
 }
