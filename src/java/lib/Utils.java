@@ -1,6 +1,5 @@
 package lib;
 
-import dto.User;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -20,7 +19,7 @@ public class Utils {
     
     /** END */
     
-    
+    public static final String FB_DEFAULT_PROFILE_PIC = "/img/icons/fb-no-profile.jpg";
     public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter READABLE_DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     

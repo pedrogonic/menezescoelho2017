@@ -1,4 +1,4 @@
-/* global FB, fbID, contextPath */
+/* global FB, fbID, contextPath, defaultFbUserImg */
 
 (function(d, s, id){
     
@@ -72,6 +72,8 @@ function facebookAPI() {
         console.log('Successful login for: ' + fbName 
                 + ', userID: ' + fbUserID 
                 + ', email: ' + fbEmail);
+        
+        fbUserImg = defaultFbUserImg;
         
         /* Getting User's profile picture */ 
         FB.api("/" + fbUserID + "/picture", function (response) {
