@@ -47,11 +47,6 @@ public class Controller extends HttpServlet {
         
         session.setAttribute("daysToGo", Long.toString(Utils.daysToGo()));
         
-        String fbUserImg = (String) session.getAttribute("fbUserImg");
-        if (fbUserImg == null)
-            fbUserImg = request.getContextPath() + "/img/icons/fb-no-profile.jpg";
-        session.setAttribute("fbUserImg", fbUserImg);
-        
         response.sendRedirect(page.getPageName());
         
     }
