@@ -62,7 +62,8 @@
     var fbUserID = '${fbUserID}';
     var fbName = '${fbName}';
     var fbEmail = '${fbEmail}';
-    var fbUserImg = '${userLoggedIn}';
+    var fbUserImg = '${fbUserImg}';
+    var defaultFbUserImg = '<%=request.getContextPath() + Utils.FB_DEFAULT_PROFILE_PIC%>';
     
 </script>
 
