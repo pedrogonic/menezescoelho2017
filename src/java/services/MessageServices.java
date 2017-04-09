@@ -97,4 +97,10 @@ public class MessageServices {
         
     }
     
+    public static Message getMessageFromSession(String action, HttpSession session) {
+        
+        return (Message) session.getAttribute(action + "Message");
+        
+    }
+    
 }

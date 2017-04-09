@@ -1,4 +1,22 @@
+<%@page import="java.util.List"%>
+<%@page import="dto.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    
+    List<Message> messageList = (List) session.getAttribute("messageList");
+    pageContext.setAttribute("messageList", messageList);
+    session.removeAttribute("messageList");
+    
+    Message messagePosted = (Message) session.getAttribute("messagePosted");
+    pageContext.setAttribute("messagePosted", messagePosted);
+    session.removeAttribute("messagePosted");
+    
+    Message messageReplied = (Message) session.getAttribute("messageReplied");
+    pageContext.setAttribute("messageReplied", messageReplied);
+    session.removeAttribute("messageReplied");
+    
+%>    
 
 <!DOCTYPE html>
 <html>

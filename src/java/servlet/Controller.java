@@ -1,6 +1,9 @@
 package servlet;
 
+import dto.Message;
+import dto.User;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lib.Utils;
+import services.MessageServices;
+import services.UserServices;
 
 @WebServlet(name = "Controller", urlPatterns = {"/Controller"})
 public class Controller extends HttpServlet {
@@ -26,12 +31,24 @@ public class Controller extends HttpServlet {
         
         try (Utils.Page page = Utils.Page.valueOf(request.getParameter("page"))) {
         
+            HttpSession session = request.getSession();
+            
             switch(page){
-                default:
-                    redirect(request,response,page);
+                case MSG:
+                    
+                    User user = UserServices.getUserFromSession(session);
+                    List<Message> messageList = MessageServices.getAllMessages(user);
+                    Message messagePosted = MessageServices.getMessageFromSession(Message.Action.POSTED.getActionName(), session);
+                    Message messageReplied = MessageServices.getMessageFromSession(Message.Action.REPLIED.getActionName(), session);
+                    
+                    session.setAttribute("messageList", messageList);
+                    session.setAttribute("messagePosted", messagePosted);
+                    session.setAttribute("messageReplied", messageReplied);
                     break;
             }
         
+            redirect(request,response,page);
+            
         } catch (Exception e){ redirect(request, response, Utils.Page.ERROR); }
         
     }

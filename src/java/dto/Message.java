@@ -12,10 +12,19 @@ public class Message {
     private LocalDateTime time;
     private boolean trashable = false;
 
-    public static enum DeleteResult{
+    public static enum DeleteResult {
         DELETED, NOT_DELETED, DENIED 
     }
     
+    public static enum Action {
+        POSTED ("Posted"), REPLIED ("Replied");
+        
+        private final String actionName;
+        
+        private Action(String actionName) { this.actionName = actionName;}
+        
+        public String getActionName() { return actionName; }
+    }
     
     public Message() {}
 
