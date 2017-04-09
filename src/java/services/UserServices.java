@@ -43,11 +43,11 @@ public class UserServices {
      */
     public static User getUserFromSession(HttpSession session) {
         
-        String userID = (String) session.getAttribute("userID");
+        Integer userID = (Integer) session.getAttribute("userID");
         
-        if (userID != null && !userID.equals("")) {
+        if ( userID != null ) {
         
-            return  new User(Integer.parseInt((String) session.getAttribute("userID"))
+            return  new User(userID
                                 , (String) session.getAttribute("fbUserID")
                                 , (String) session.getAttribute("fbName")
                                 , (String) session.getAttribute("fbEmail")

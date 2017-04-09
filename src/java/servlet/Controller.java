@@ -45,11 +45,12 @@ public class Controller extends HttpServlet {
                     session.setAttribute("messagePosted", messagePosted);
                     session.setAttribute("messageReplied", messageReplied);
                     break;
+                    
             }
         
             redirect(request,response,page);
             
-        } catch (Exception e){ redirect(request, response, Utils.Page.ERROR); }
+        } catch (Exception e){ e.printStackTrace(); redirect(request, response, Utils.Page.ERROR); }
         
     }
     
