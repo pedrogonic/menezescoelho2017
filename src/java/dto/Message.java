@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Message {
     
-    private int messageID = 0;
+    private String messageID = "";
     private User user;
     private String color;
     private String body;
@@ -37,7 +37,7 @@ public class Message {
      * @param reply
      * @param time 
      */
-    public Message(int messageID, User user, String color
+    public Message(String messageID, User user, String color
             , String body, String reply, LocalDateTime time) {
         this.messageID = messageID;
         this.user = user;
@@ -47,6 +47,12 @@ public class Message {
         this.time = time;
     }
     
+    /**
+     * Constructor for posting a message
+     * @param user
+     * @param color
+     * @param body 
+     */
     public Message(User user, String color, String body) {
         this.user = user;
         this.color = color;
@@ -58,16 +64,16 @@ public class Message {
      * @param messageID
      * @param user 
      */
-    public Message(int messageID, User user) {
+    public Message(String messageID, User user) {
         this.messageID = messageID;
         this.user = user;
     }
     
-    public int getMessageID() {
+    public String getMessageID() {
         return messageID;
     }
 
-    public void setMessageID(int messageID) {
+    public void setMessageID(String messageID) {
         this.messageID = messageID;
     }
 
@@ -121,14 +127,14 @@ public class Message {
     
     public boolean setTrashable(Message msg) {
         if (msg != null)
-            this.trashable = (this.messageID == msg.getMessageID() 
-                    && this.getUser().getUserID() == msg.getUser().getUserID());
+            this.trashable = (this.messageID.equals(msg.getMessageID()) 
+                    && this.getUser().getUserID().equals(msg.getUser().getUserID()));
         return this.trashable;
     }
     
     public boolean setTrashable(User user) {
         if (user != null)
-            this.trashable = (this.getUser().getUserID() == user.getUserID());
+            this.trashable = (this.getUser().getUserID().equals(user.getUserID()));
         return this.trashable;
     }
     

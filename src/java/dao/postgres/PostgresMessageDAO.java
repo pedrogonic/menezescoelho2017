@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import lib.Secret;
 
 
@@ -26,7 +27,7 @@ public class PostgresMessageDAO implements MessageDAO {
 
         try {
             
-            if (message.getMessageID() == 0) {
+            if (message.getMessageID().equals("")) {
             
                 //INSERT
                 String query = "INSERT INTO " + Secret.MESSAGES_TABLE
@@ -36,14 +37,14 @@ public class PostgresMessageDAO implements MessageDAO {
                                 + " VALUES (?,?,?);";
 
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                ps.setInt(1, message.getUser().getUserID());
+                ps.setObject(1, UUID.fromString(message.getUser().getUserID()));
                 ps.setString(2, message.getColor());
                 ps.setString(3, message.getBody());
                 ps.executeUpdate();
 
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        message.setMessageID(generatedKeys.getInt(1));
+                        message.setMessageID(generatedKeys.getString(1));
                     }else {
                         throw new SQLException("Failed to get generated ID for Message.");
                     }
@@ -62,7 +63,7 @@ public class PostgresMessageDAO implements MessageDAO {
                 ps.setString(1, message.getColor());
                 ps.setString(2, message.getBody());
                 ps.setString(3, message.getReply());
-                ps.setInt(4, message.getMessageID());
+                ps.setString(4, message.getMessageID());
                 ps.executeUpdate();
                 
             }
@@ -94,7 +95,7 @@ public class PostgresMessageDAO implements MessageDAO {
                             + " WHERE messageID = ?;";
                 
                 ps = con.prepareStatement(query);
-                ps.setInt(1, message.getMessageID());
+                ps.setString(1, message.getMessageID());
                 if (ps.executeUpdate() > 0)
                     return Message.DeleteResult.DELETED;
                 
@@ -110,7 +111,7 @@ public class PostgresMessageDAO implements MessageDAO {
     }
     
     @Override
-    public Message getMessage(int messageID) {
+    public Message getMessage(String messageID) {
         
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -125,16 +126,16 @@ public class PostgresMessageDAO implements MessageDAO {
                             + " ,reply"
                             + " ,messageTime"
                             + ") FROM " + Secret.MESSAGES_TABLE
-                            + " WHERE messageID = ? AND deleted = 0;";
+                            + " WHERE messageID = ? AND deleted = false;";
             
             ps = con.prepareStatement(query);
-            ps.setInt(1, messageID);
+            ps.setString(1, messageID);
             rs = ps.executeQuery();
             
             while ( rs.next() ) {
                 message = new Message(
                                     messageID
-                                    , new User(rs.getInt(1))
+                                    , new User(rs.getString(1))
                                     , rs.getString(2)
                                     , rs.getString(3)
                                     , rs.getString(4)
@@ -161,23 +162,23 @@ public class PostgresMessageDAO implements MessageDAO {
         
         try {
             
-            String query = "SELECT (" 
+            String query = "SELECT " 
                             + " messageID"
                             + " ,userID"
                             + " ,color"
                             + " ,body"
                             + " ,reply"
                             + " ,messageTime"
-                            + ") FROM " + Secret.MESSAGES_TABLE
-                            + " WHERE deleted = 0;";
+                            + " FROM " + Secret.MESSAGES_TABLE
+                            + " WHERE deleted = false;";
 
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();
             
             while ( rs.next() ) {
                 list.add(new Message(
-                                    rs.getInt(1)
-                                    , new User(rs.getInt(2))
+                                    rs.getString(1)
+                                    , new User(rs.getString(2))
                                     , rs.getString(3)
                                     , rs.getString(4)
                                     , rs.getString(5)

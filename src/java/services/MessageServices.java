@@ -76,7 +76,7 @@ public class MessageServices {
         } else if (reply != null && !reply.equals("")) {
             
             Message message = DAOFactory.getDAOFactory().getMessageDAO()
-                    .getMessage(Integer.parseInt(request.getParameter("messageID")));
+                    .getMessage(request.getParameter("messageID"));
             message.setReply(reply);
             
             return message;

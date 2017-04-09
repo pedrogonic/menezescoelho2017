@@ -43,7 +43,7 @@ public class UserServices {
      */
     public static User getUserFromSession(HttpSession session) {
         
-        Integer userID = (Integer) session.getAttribute("userID");
+        String userID = (String) session.getAttribute("userID");
         
         if ( userID != null ) {
         

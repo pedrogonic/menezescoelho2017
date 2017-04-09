@@ -2,7 +2,7 @@ package dto;
 
 public class User {
     
-    private int userID = 0;
+    private String userID = "";
     private String fbUserID;
     private String userName;
     private String userEmail;
@@ -17,7 +17,7 @@ public class User {
      * @param userEmail
      * @param userPicURL 
      */
-    public User(int userID, String fbUserID, String userName
+    public User(String userID, String fbUserID, String userName
             , String userEmail, String userPicURL) {
         this.userID = userID;
         this.fbUserID = fbUserID;
@@ -45,15 +45,15 @@ public class User {
      * Constructor for creating and deleting a message
      * @param userID
      */
-    public User(int userID) {
+    public User(String userID) {
         this.userID = userID;
     }
     
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

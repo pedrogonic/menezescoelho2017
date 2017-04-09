@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 import lib.Secret;
 
 
@@ -40,7 +41,7 @@ public class PostgresUserDAO implements UserDAO {
                 ps.setString(2, user.getUserName());
                 ps.setString(3, user.getUserEmail());
                 ps.setString(4, user.getUserPicURL());
-                ps.setInt(5, existingUser.getUserID());
+                ps.setObject(5, UUID.fromString(existingUser.getUserID()));
                 ps.executeUpdate();
             
                 user.setUserID(existingUser.getUserID());
@@ -64,7 +65,7 @@ public class PostgresUserDAO implements UserDAO {
 
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        user.setUserID(generatedKeys.getInt(1));
+                        user.setUserID(generatedKeys.getString(1));
                     }else {
                         throw new SQLException("Failed to get generated ID for User.");
                     }
@@ -79,7 +80,7 @@ public class PostgresUserDAO implements UserDAO {
                             + " VALUES (?);";
             
             ps = con.prepareStatement(query);
-            ps.setInt(1, user.getUserID());
+            ps.setObject(1, UUID.fromString(user.getUserID()));
             ps.executeUpdate();
 
         } catch (SQLException e) { e.printStackTrace(); }
@@ -91,7 +92,7 @@ public class PostgresUserDAO implements UserDAO {
     }
     
      @Override
-    public User getUser(int userID) {
+    public User getUser(String userID) {
         
         User user = null;
         
@@ -104,12 +105,12 @@ public class PostgresUserDAO implements UserDAO {
                         + " WHERE userID = ?;";
             
             ps = con.prepareStatement(query);
-            ps.setInt(1, userID);
+            ps.setObject(1, UUID.fromString(userID));
             
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3)
+                user = new User(rs.getString(1), rs.getString(2), rs.getString(3)
                         , rs.getString(4), rs.getString(5));
             }
             
@@ -142,7 +143,7 @@ public class PostgresUserDAO implements UserDAO {
             rs = ps.executeQuery();
             
             while (rs.next()) {
-                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3)
+                user = new User(rs.getString(1), rs.getString(2), rs.getString(3)
                         , rs.getString(4), rs.getString(5));
             }
             
