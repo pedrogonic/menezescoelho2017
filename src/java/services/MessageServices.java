@@ -23,6 +23,17 @@ public class MessageServices {
     }
     
     /**
+     * Method for deleting a message
+     * @param message
+     * @return enum object representing result of deletion
+     */
+    public static Message.DeleteResult trashMessage(Message message) {
+        
+        return DAOFactory.getDAOFactory().getMessageDAO().deleteMessage(message);
+        
+    }
+    
+    /**
      * Get all messages without a login.
      * @return list of all messages
      */
@@ -64,22 +75,31 @@ public class MessageServices {
 
         String body = request.getParameter("body");
         String reply = request.getParameter("reply");
-        User user = UserServices.getUserFromRequest(request);
+        String messageID = request.getParameter("messageID");
+        User user = UserServices.getUserFromSession(request.getSession());
         
-        if (body != null && !body.equals("")) {
+        if ( body != null && !body.equals("") ) {
             
+            // POST
+            System.out.println("texto: "+request.getParameter("body"));
             return new Message(user
                                 , request.getParameter("color")
                                 , request.getParameter("body")
                         );
             
-        } else if (reply != null && !reply.equals("")) {
+        } else if ( reply != null && !reply.equals("") ) {
             
+            // REPLY
             Message message = DAOFactory.getDAOFactory().getMessageDAO()
-                    .getMessage(request.getParameter("messageID"));
+                    .getMessage(messageID);
             message.setReply(reply);
             
             return message;
+            
+        } else if ( messageID != null && !messageID.equals("") ) {
+            
+            // TRASHING
+            return new Message(messageID, user);
             
         } else return null;
                 
@@ -88,18 +108,20 @@ public class MessageServices {
     /**
      * Utility message method to set a posted or replied message to session.
      * @param message
-     * @param action -> modifier to name of attribute set in session
+     * @param method -> modifier to name of attribute set in session
      * @param session
      */
-    public static void setMessageToSession(Message message, String action, HttpSession session) {
+    public static void setMessageToSession(Message message, Message.PostMethod method, HttpSession session) {
         
-        session.setAttribute(action + "Message", message);
+        session.setAttribute(method.getMethodName() + "Message", message);
         
     }
     
-    public static Message getMessageFromSession(String action, HttpSession session) {
+    public static Message getMessageFromSession(Message.PostMethod method, HttpSession session) {
         
-        return (Message) session.getAttribute(action + "Message");
+        Message message = (Message) session.getAttribute(method.getMethodName() + "Message");
+        session.removeAttribute(method.getMethodName() + "Message");
+        return message;
         
     }
     

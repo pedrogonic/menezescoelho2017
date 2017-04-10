@@ -1,3 +1,4 @@
+<%@page import="services.MessageServices"%>
 <%@page import="java.util.List"%>
 <%@page import="dto.Message"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -5,16 +6,19 @@
 <%
     
     List<Message> messageList = (List) session.getAttribute("messageList");
+    if ( messageList == null || messageList.equals("null")) {
+        response.sendRedirect(request.getContextPath()+"/Controller?page="+Utils.Page.MSG);
+        return;
+    }
+    
     pageContext.setAttribute("messageList", messageList);
     session.removeAttribute("messageList");
     
-    Message messagePosted = (Message) session.getAttribute("messagePosted");
+    Message messagePosted = MessageServices.getMessageFromSession(Message.PostMethod.POST_MESSAGE, session);
     pageContext.setAttribute("messagePosted", messagePosted);
-    session.removeAttribute("messagePosted");
     
-    Message messageReplied = (Message) session.getAttribute("messageReplied");
+    Message messageReplied = MessageServices.getMessageFromSession(Message.PostMethod.REPLY_MESSAGE, session);
     pageContext.setAttribute("messageReplied", messageReplied);
-    session.removeAttribute("messageReplied");
     
 %>    
 
@@ -50,37 +54,37 @@
                     </article>
                     <% } %>
                     
-                    <form>
+                    <form   id="postMessageForm"
+                            method="post" 
+                            action="<%=request.getContextPath()%>/Controller?method=<%=Message.PostMethod.POST_MESSAGE%>">
                         <article id="userInfo">
                             
                             <span id="userPic"></span>
                             
                             <span id="userName"></span>
                             
-                            <input type="color" name="colorpicker" id="colorpicker" 
+                            <input type="color" name="color" id="colorpicker" 
                                    onchange="changeColor()"/>
                             
                             <br/>
                         </article>
                         
-                        <textarea id="newMsgBody" class="msgTextarea"
+                        <textarea id="newMsgBody" name="body" class="msgTextarea"
                                 rows="5" cols="30"></textarea>
                         <br/>
                         
-                        <button id="submitMsg" onclick="beforeSubmit()" disabled>
-                            <fmt:message bundle="${text}" key="page.msg.submit"/>
-                        </button>
+                        <input type="submit" 
+                               id="submitMsg" 
+                               value="<fmt:message bundle="${text}" key="page.msg.submit"/>" 
+                               disabled/>
                     </form>
                     
                 </article>
                 
                 <section class="mural">
-                    <article class="msg fieldset">Teste</article>
-                    <article class="msg fieldset">Teste</article>
-                    <article class="msg fieldset">Teste</article>
-                    <article class="msg fieldset">Teste</article>
-                    <article class="msg fieldset">Teste</article>
-                    <article class="msg fieldset">Teste</article>
+                    <%for (Message msg : messageList) {%>
+                    <article class="msg fieldset"><%=msg.getBody()%></article>
+                    <%}%>
                 </section>
                             
             </section>

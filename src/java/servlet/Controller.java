@@ -26,10 +26,17 @@ public class Controller extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        try (Utils.Page page = Utils.Page.valueOf(request.getParameter("page"))) {
+        // Getting page from request Parameter. 
+        // If null, parameter was set by postMethod in an Attribute.
+        String requestPageParam = request.getParameter("page");
+        if (requestPageParam != null && !requestPageParam.equals(""))
+            request.setAttribute("page", requestPageParam);
+        
+        try (Utils.Page page = Utils.Page.valueOf((String)request.getAttribute("page"))) {
         
             HttpSession session = request.getSession();
             
@@ -38,8 +45,8 @@ public class Controller extends HttpServlet {
                     
                     User user = UserServices.getUserFromSession(session);
                     List<Message> messageList = MessageServices.getAllMessages(user);
-                    Message messagePosted = MessageServices.getMessageFromSession(Message.Action.POSTED.getActionName(), session);
-                    Message messageReplied = MessageServices.getMessageFromSession(Message.Action.REPLIED.getActionName(), session);
+                    Message messagePosted = MessageServices.getMessageFromSession(Message.PostMethod.POST_MESSAGE, session);
+                    Message messageReplied = MessageServices.getMessageFromSession(Message.PostMethod.REPLY_MESSAGE, session);
                     
                     session.setAttribute("messageList", messageList);
                     session.setAttribute("messagePosted", messagePosted);
@@ -70,7 +77,6 @@ public class Controller extends HttpServlet {
         
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -96,7 +102,43 @@ public class Controller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession();
+        
+        try (Message.PostMethod postMethod = Message.PostMethod.valueOf(request.getParameter("method"))) {
+            
+            switch(postMethod) {
+
+                case POST_MESSAGE:
+                    Message postMessage = MessageServices.getMessageFromRequest(request);
+                    if ( postMessage != null ) {
+                        postMessage = MessageServices.postMessage(postMessage);
+                        MessageServices.setMessageToSession(postMessage, postMethod, session);
+                    }
+                    request.setAttribute("page",Utils.Page.MSG.toString());
+                    break;
+                case REPLY_MESSAGE:
+                    Message replyMessage = MessageServices.getMessageFromRequest(request);
+                    if ( replyMessage != null ) {
+                        replyMessage = MessageServices.postMessage(replyMessage);
+                        MessageServices.setMessageToSession(replyMessage, postMethod, session);
+                    }
+                    request.setAttribute("page",Utils.Page.MSG.toString());
+                    break;
+                case TRASH:
+                    Message trashMessage = MessageServices.getMessageFromRequest(request);
+                    if ( trashMessage != null )
+                        session.setAttribute("deleteResult", MessageServices.trashMessage(trashMessage));
+                    request.setAttribute("page",Utils.Page.MSG.toString());
+                    break;
+                    
+            }
+
+        }
+        
         processRequest(request, response);
+        
     }
 
     /**
@@ -107,6 +149,6 @@ public class Controller extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Controller";
-    }// </editor-fold>
+    }
 
 }

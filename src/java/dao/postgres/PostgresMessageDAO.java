@@ -56,14 +56,14 @@ public class PostgresMessageDAO implements MessageDAO {
                 String query = "UPDATE " + Secret.MESSAGES_TABLE + " SET"
                                 + " color = ?"
                                 + " ,body = ?"
-                                + " ,reply = ?)"
+                                + " ,reply = ?"
                                 + " WHERE messageID = ?;";
                 
                 ps = con.prepareStatement(query);
                 ps.setString(1, message.getColor());
                 ps.setString(2, message.getBody());
                 ps.setString(3, message.getReply());
-                ps.setString(4, message.getMessageID());
+                ps.setObject(4, UUID.fromString(message.getMessageID()));
                 ps.executeUpdate();
                 
             }
@@ -82,7 +82,7 @@ public class PostgresMessageDAO implements MessageDAO {
         
         Message candidateMessage = getMessage(message.getMessageID());
         
-        if (message.getUser().getUserID() != candidateMessage.getUser().getUserID())
+        if (!message.getUser().getUserID().equals(candidateMessage.getUser().getUserID()))
             return Message.DeleteResult.DENIED;
         else {
             
@@ -91,11 +91,11 @@ public class PostgresMessageDAO implements MessageDAO {
             try {
                 
                 String query = "UPDATE " + Secret.MESSAGES_TABLE
-                            + " SET deleted = 1"
+                            + " SET deleted = true"
                             + " WHERE messageID = ?;";
                 
                 ps = con.prepareStatement(query);
-                ps.setString(1, message.getMessageID());
+                ps.setObject(1, UUID.fromString(message.getMessageID()));
                 if (ps.executeUpdate() > 0)
                     return Message.DeleteResult.DELETED;
                 
@@ -119,17 +119,17 @@ public class PostgresMessageDAO implements MessageDAO {
         
         try {
             
-            String query = "SELECT (" 
+            String query = "SELECT " 
                             + " userID"
                             + " ,color"
                             + " ,body"
                             + " ,reply"
                             + " ,messageTime"
-                            + ") FROM " + Secret.MESSAGES_TABLE
+                            + " FROM " + Secret.MESSAGES_TABLE
                             + " WHERE messageID = ? AND deleted = false;";
             
             ps = con.prepareStatement(query);
-            ps.setString(1, messageID);
+            ps.setObject(1, UUID.fromString(messageID));
             rs = ps.executeQuery();
             
             while ( rs.next() ) {

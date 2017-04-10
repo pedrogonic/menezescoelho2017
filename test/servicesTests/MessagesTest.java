@@ -19,10 +19,20 @@ public class MessagesTest {
                                         ,"#000000"
                                         ,"test"
                                     );
+        Message trashMessage = new Message(
+                                        "86826479-9b4e-4cfc-977a-b3266c5c6c1f"
+                                        , user // WORKS
+                                        //,new User("nonExistent") // FAILS
+                                    );
         
         // POSTING
-        message = MessageServices.postMessage(message);
-        System.out.println("MessageID: " + message.getMessageID());
+//        message = MessageServices.postMessage(message);
+//        System.out.println("MessageID: " + message.getMessageID());
+        
+        // REPLYING
+//        message.setReply("reply!");
+//        message = MessageServices.postMessage(message);
+//        System.out.println("Reply: " + message.getReply());
         
         //GETTING MESSAGES
         List<Message> list = MessageServices.getAllMessages(user);
@@ -31,6 +41,9 @@ public class MessagesTest {
             System.out.println("Trashable: " + msg.isTrashable());
         });
 
+        // TRASHING
+        System.out.println("Delete msg " + trashMessage.getMessageID() + " result: " + MessageServices.trashMessage(trashMessage));
+        
     }
     
 }

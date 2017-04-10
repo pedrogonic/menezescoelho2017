@@ -16,14 +16,28 @@ public class Message {
         DELETED, NOT_DELETED, DENIED 
     }
     
-    public static enum Action {
-        POSTED ("Posted"), REPLIED ("Replied");
+    public static enum PostMethod implements AutoCloseable {
+        POST_MESSAGE("post"), REPLY_MESSAGE("reply"), TRASH("trash");
         
-        private final String actionName;
+        private final String methodName;
         
-        private Action(String actionName) { this.actionName = actionName;}
+        private PostMethod(String methodName) { this.methodName = methodName;}
         
-        public String getActionName() { return actionName; }
+        public static PostMethod fromString(String text) {
+            
+            for (PostMethod p : PostMethod.values()) {
+                if (p.getMethodName().equalsIgnoreCase(text)) {
+                    return p;
+                }
+            }
+            return null;
+        
+        }
+        
+        public String getMethodName() { return this.methodName; }
+        
+        @Override
+        public void close() {}
     }
     
     public Message() {}

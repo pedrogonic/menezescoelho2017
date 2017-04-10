@@ -16,6 +16,7 @@
     Utils.Page currentURI = Utils.stripPageNameFromRequestURI(request.getRequestURI());
     if ( !( currentPage != null && currentPage.equals(currentURI) ) ){
         response.sendRedirect(request.getContextPath()+"/Controller?page="+currentURI);
+        return;
     }
         
     
