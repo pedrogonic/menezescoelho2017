@@ -81,7 +81,6 @@ public class MessageServices {
         if ( body != null && !body.equals("") ) {
             
             // POST
-            System.out.println("texto: "+request.getParameter("body"));
             return new Message(user
                                 , request.getParameter("color")
                                 , request.getParameter("body")
