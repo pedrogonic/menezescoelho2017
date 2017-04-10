@@ -48,6 +48,7 @@ public class Controller extends HttpServlet {
                     
             }
         
+            session.setAttribute("currentPage", page);
             redirect(request,response,page);
             
         } catch (Exception e){ e.printStackTrace(); redirect(request, response, Utils.Page.ERROR); }

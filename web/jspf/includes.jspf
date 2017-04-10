@@ -12,6 +12,13 @@
 
 <%
     
+    Utils.Page currentPage = (Utils.Page) session.getAttribute("currentPage");
+    Utils.Page currentURI = Utils.stripPageNameFromRequestURI(request.getRequestURI());
+    if ( !( currentPage != null && currentPage.equals(currentURI) ) ){
+        response.sendRedirect(request.getContextPath()+"/Controller?page="+currentURI);
+    }
+        
+    
     String readableBigDay = Utils.READABLE_BIG_DAY;
     pageContext.setAttribute("bigDay", readableBigDay);
     
