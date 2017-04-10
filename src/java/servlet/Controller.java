@@ -36,6 +36,8 @@ public class Controller extends HttpServlet {
         
         try (Utils.Page page = Utils.Page.valueOf(request.getParameter("page"))) {
         
+            request.getSession().setAttribute("currentPage", page);
+            
             switch(page){
                 default:
                     redirect(request,response,page);
