@@ -1,0 +1,71 @@
+/**
+ *  Messages
+ */
+
+#newMsg {
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 5px;
+    display: table;
+}
+
+#userInfo {
+    margin-bottom: 20px;
+    display: none;
+}
+
+#userName {
+    font-size: 25px;
+}
+
+#colorpicker {
+    width: 40px;
+    -webkit-max-logical-width: 20px;
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+
+#submitMsg {
+    margin-top: 20px;
+}
+
+.mural {
+    margin-top: 20px;
+}
+
+.msgUserName {
+    font-size: 25px;
+}
+
+.msgDate {
+    font-size: 12px;
+    color: grey;
+}
+
+.msg {
+    background: rgba(241,241,241,1);
+    margin-top: 12px;
+    border-radius: 5px;
+    padding: 20px;
+    /*max-width: 25%;*/
+}
+
+.msgBody {
+    margin-top: 10px;
+}
+
+.msgReply {
+    margin-top: 10px;
+    background: lightgoldenrodyellow;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.trashIcon {
+    width: 20px;
+    margin-top: 10px;
+    float: right;
+    cursor: pointer;
+}

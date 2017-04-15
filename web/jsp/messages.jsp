@@ -28,8 +28,10 @@
         
         <%@include file="/jspf/includes.jspf"%>
         
+        <link href="<%=request.getContextPath()%>/css/messages.css" rel="stylesheet" type="text/css"/>
         
         <script src="<%=request.getContextPath()%>/js/messages.js" type="text/javascript"></script>
+        <script src="<%=request.getContextPath()%>/js/masonry.pkgd.min.js" type="text/javascript"></script>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message bundle="${text}" key="page.title"/></title>
@@ -82,9 +84,19 @@
                 </article>
                 
                 <section class="mural">
-                    <%for (Message msg : messageList) {%>
-                    <article class="msg fieldset"><%=msg.getBody()%></article>
-                    <%}%>
+                    <c:choose>
+                        <c:when test="${empty messageList}">
+                            <fmt:message bundle="${text}" key="page.msg.empty"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${messageList}" var="msg">
+                                <tl:MessageTag message="${msg}"
+                                               postMessage="${messagePosted}"
+                                               replyMessage="${messageReplied}"
+                                               contextPath="${contextPath}"/>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </section>
                             
             </section>

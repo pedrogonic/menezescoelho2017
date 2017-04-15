@@ -118,6 +118,7 @@ public class Controller extends HttpServlet {
                     }
                     request.setAttribute("page",Utils.Page.MSG.toString());
                     break;
+                    
                 case REPLY_MESSAGE:
                     Message replyMessage = MessageServices.getMessageFromRequest(request);
                     if ( replyMessage != null ) {
@@ -126,6 +127,7 @@ public class Controller extends HttpServlet {
                     }
                     request.setAttribute("page",Utils.Page.MSG.toString());
                     break;
+                    
                 case TRASH:
                     Message trashMessage = MessageServices.getMessageFromRequest(request);
                     if ( trashMessage != null )

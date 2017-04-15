@@ -1,6 +1,8 @@
 package dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Message {
     
@@ -12,6 +14,8 @@ public class Message {
     private LocalDateTime time;
     private boolean trashable = false;
 
+    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+    
     public static enum DeleteResult {
         DELETED, NOT_DELETED, DENIED 
     }
@@ -38,6 +42,30 @@ public class Message {
         
         @Override
         public void close() {}
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+        if (!Message.class.isAssignableFrom(obj.getClass()))
+            return false;
+        final Message otherMessage = (Message) obj;
+        return otherMessage.getMessageID().equals(this.getMessageID());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.messageID);
+        hash = 97 * hash + Objects.hashCode(this.user);
+        hash = 97 * hash + Objects.hashCode(this.color);
+        hash = 97 * hash + Objects.hashCode(this.body);
+        hash = 97 * hash + Objects.hashCode(this.reply);
+        hash = 97 * hash + Objects.hashCode(this.time);
+        hash = 97 * hash + (this.trashable ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.dtf);
+        return hash;
     }
     
     public Message() {}
@@ -127,6 +155,10 @@ public class Message {
         return time;
     }
 
+    public String getFormattedTime() {
+        return dtf.format(time);
+    }
+    
     public void setTime(LocalDateTime time) {
         this.time = time;
     }

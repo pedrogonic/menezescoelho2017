@@ -4,15 +4,28 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
+    
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
     <welcome-file-list>
         <welcome-file>jsp/index.jsp</welcome-file>
     </welcome-file-list>
+    
     <error-page>
         <location>/jsp/error.jsp</location>
     </error-page>
+    
+    <jsp-config> 
+        
+        <taglib>
+            <taglib-uri>tagLibrary</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/tagLibrary.tld</taglib-location>
+        </taglib>
+        
+    </jsp-config> 
+  
 </web-app>

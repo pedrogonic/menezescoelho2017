@@ -15,4 +15,10 @@ $(document).ready(function() {
 
     });
     
+    $('.mural').masonry({
+        // options
+        itemSelector: '.msg',
+        gutter: 10
+    });
+    
 });
