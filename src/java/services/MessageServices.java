@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 public class MessageServices {
     
     /**
@@ -18,7 +19,11 @@ public class MessageServices {
      */
     public static Message postMessage(Message message) {
         
-        return DAOFactory.getDAOFactory().getMessageDAO().insertUpdateMessage(message);
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) { 
+            
+            return daoFactory.getMessageDAO().insertUpdateMessage(message);
+        
+        }
         
     }
     
@@ -29,7 +34,11 @@ public class MessageServices {
      */
     public static Message.DeleteResult trashMessage(Message message) {
         
-        return DAOFactory.getDAOFactory().getMessageDAO().deleteMessage(message);
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) { 
+        
+            return daoFactory.getMessageDAO().deleteMessage(message);
+        
+        }
         
     }
     
@@ -39,15 +48,17 @@ public class MessageServices {
      */
     private static List<Message> getAllMessages() {
         
-        DAOFactory daoFactory = DAOFactory.getDAOFactory();
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) { 
         
-        MessageDAO messageDAO = daoFactory.getMessageDAO();
-        List<Message> list = messageDAO.getAllMessages();
-        
-        UserDAO userDAO = daoFactory.getUserDAO();
-        list.forEach((msg) -> { msg.setUser(userDAO.getUser(msg.getUser().getUserID())); });
-        
-        return list;
+            MessageDAO messageDAO = daoFactory.getMessageDAO();
+            List<Message> list = messageDAO.getAllMessages();
+
+            UserDAO userDAO = daoFactory.getUserDAO();
+            list.forEach((msg) -> { msg.setUser(userDAO.getUser(msg.getUser().getUserID())); });
+
+            return list;
+            
+        }
         
     }
     

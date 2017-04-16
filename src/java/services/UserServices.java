@@ -1,10 +1,10 @@
 package services;
 
 import dao.DAOFactory;
-import dao.UserDAO;
 import dto.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 
 public class UserServices {
     
@@ -15,8 +15,11 @@ public class UserServices {
      */
     public static User authenticate(User user) {
         
-        UserDAO userDAO = DAOFactory.getDAOFactory().getUserDAO();
-        return userDAO.insertUpdateUser(user);
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) {
+            
+            return daoFactory.getUserDAO().insertUpdateUser(user);
+            
+        }
         
     }
     

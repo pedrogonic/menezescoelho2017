@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import lib.Secret;
 
-public class PostgresDAOFactory extends DAOFactory{
+
+public class PostgresDAOFactory extends DAOFactory {
     
     private java.sql.Connection con;
     
@@ -38,4 +39,9 @@ public class PostgresDAOFactory extends DAOFactory{
         return new PostgresUserDAO(con);
     }
     
+    @Override
+    public void close() {
+        try { if ( con != null ) { con.close(); } } catch(SQLException e) {} 
+    }
+
 }

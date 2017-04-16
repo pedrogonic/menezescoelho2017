@@ -195,9 +195,4 @@ public class PostgresMessageDAO implements MessageDAO {
         return list;
     }
     
-    @Override
-    public void close() {
-        try { if(con != null) {con.close();} } catch(SQLException e) {e.printStackTrace();}
-    }
-    
 }

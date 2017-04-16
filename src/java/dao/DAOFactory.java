@@ -3,7 +3,7 @@ package dao;
 import dao.postgres.PostgresDAOFactory;
 import lib.Utils;
 
-public abstract class DAOFactory {
+public abstract class DAOFactory implements AutoCloseable {
     
     public enum Type {
         POSTGRES ("Postgres");
@@ -32,5 +32,8 @@ public abstract class DAOFactory {
     public abstract MessageDAO getMessageDAO();
     
     public abstract UserDAO getUserDAO();
+    
+    @Override
+    public abstract void close();
     
 }

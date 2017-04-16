@@ -157,9 +157,4 @@ public class PostgresUserDAO implements UserDAO {
         
     }
     
-    @Override
-    public void close() {
-        try { if(con != null) {con.close();} } catch(SQLException e) {e.printStackTrace();}
-    }
-    
 }
