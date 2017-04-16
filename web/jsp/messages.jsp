@@ -20,6 +20,13 @@
     Message messageReplied = MessageServices.getMessageFromSession(Message.PostMethod.REPLY_MESSAGE, session);
     pageContext.setAttribute("messageReplied", messageReplied);
     
+    Message.DeleteResult deleteResult = (Message.DeleteResult)session.getAttribute("deleteResult");
+    pageContext.setAttribute("deleteResult", deleteResult);
+    session.removeAttribute("deleteResult");
+    
+    Message.DeleteResult resultDeleted = Message.DeleteResult.DELETED;
+    pageContext.setAttribute("resultDeleted", resultDeleted);
+    
 %>    
 
 <!DOCTYPE html>
@@ -30,6 +37,9 @@
         
         <script>
             var confirmDeletionMsg = '<fmt:message bundle="${text}" key="page.msg.confirm.delete"/>';
+            var resultDeleted = '<c:out value="${resultDeleted}"/>';
+            var deleteResult = '<c:out value="${deleteResult}"/>';
+            var deletedText = '<fmt:message bundle="${text}" key="page.msg.deleted"/>';
         </script>
         
         <link href="<%=request.getContextPath()%>/css/messages.css" rel="stylesheet" type="text/css"/>

@@ -17,7 +17,7 @@ public class Message {
     public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
     
     public static enum DeleteResult {
-        DELETED, NOT_DELETED, DENIED 
+        DELETED, NOT_DELETED, DENIED
     }
     
     public static enum PostMethod implements AutoCloseable {

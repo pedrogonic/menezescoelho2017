@@ -170,7 +170,7 @@ public class PostgresMessageDAO implements MessageDAO {
                             + " ,reply"
                             + " ,messageTime"
                             + " FROM " + Secret.MESSAGES_TABLE
-                            + " WHERE deleted = false;";
+                            + " WHERE deleted = false order by messagetime;";
 
             ps = con.prepareStatement(query);
             rs = ps.executeQuery();

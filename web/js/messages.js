@@ -1,4 +1,4 @@
-/* global bPopupConfirmClose, confirmDeletionMsg, contextPath */
+/* global bPopupConfirmClose, confirmDeletionMsg, contextPath, deleteResult, deletedText, resultDeleted */
 
 /* Changes username's color in new message */
 function changeColor() {
@@ -20,12 +20,18 @@ $(document).ready(function() {
 
     });
     
-    /* Apply masonry library */
+    /* Applies masonry library */
     $('.mural').masonry({
         // options
         itemSelector: '.msg',
         gutter: 10
     });
+    
+    /* Flashes newly posted message */
+    $('.postedMsg').effect('highlight');
+    
+    if (deleteResult === resultDeleted)
+        bPopupAlert(deletedText);
     
 });
 

@@ -14,13 +14,23 @@ public class MessageTag extends SimpleTagSupport {
     private String contextPath;
     
     
-    public void setMessage(Message message) { this.message = message; }
+    public void setMessage(Message message) { this.message = getPrintableMessage(message); }
     
     public void setPostMessage(Message postMessage) { this.postMessage = postMessage; }
     
     public void setReplyMessage(Message replyMessage) { this.replyMessage = replyMessage; }
     
     public void setContextPath(String contextPath) { this.contextPath = contextPath; }
+    
+    private Message getPrintableMessage(Message message) {
+        
+        if (message.getBody() != null)
+            message.setBody(message.getBody().replaceAll("\n", "<br/>"));
+        if (message.getReply() != null)
+            message.setReply(message.getReply().replaceAll("\n", "<br/>"));
+        return message;
+        
+    }
     
     /**
      * 
