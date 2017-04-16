@@ -62,7 +62,8 @@ public class MessageTag extends SimpleTagSupport {
             
             if ( message.isTrashable() ) {
                 out.println("<article class=\"msgTrash\">");
-                out.println("<img class=\"trashIcon\" src=\"" + contextPath + "/img/icons/trash.png\" />");
+                out.println("<img class=\"trashIcon\" src=\"" + contextPath + "/img/icons/trash.png\""
+                                        + "onclick=\"confirmTrash('" + message.getMessageID() + "');\" />");
                 out.println("</article>");
             }
             

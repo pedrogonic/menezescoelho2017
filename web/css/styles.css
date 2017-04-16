@@ -221,6 +221,25 @@ body {
 }
 
 /**
+ *   Dialogs
+ */
+
+.alertDialog, .confirmDialog {
+    padding: 20px;
+    text-align: center;
+    background: lightgrey;
+    border: 1px solid grey;
+    border-radius: 5px;
+    min-width: 200px;
+    display: none;
+}
+
+.confirmButtons {
+    margin-top: 20px;
+    float: right;
+}
+
+/**
  *   Footer
  */
 

@@ -30,6 +30,4 @@ function grantAccess() {
     $('#userInfo').show();
     $('#submitMsg').attr('disabled', false);
     
-    //TODO let user submit messages and trash his/her messages. 
-    
 }

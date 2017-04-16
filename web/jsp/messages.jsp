@@ -28,6 +28,10 @@
         
         <%@include file="/jspf/includes.jspf"%>
         
+        <script>
+            var confirmDeletionMsg = '<fmt:message bundle="${text}" key="page.msg.confirm.delete"/>';
+        </script>
+        
         <link href="<%=request.getContextPath()%>/css/messages.css" rel="stylesheet" type="text/css"/>
         
         <script src="<%=request.getContextPath()%>/js/messages.js" type="text/javascript"></script>
@@ -43,6 +47,8 @@
             <%@include file="/jspf/header.jspf"%>
             
             <%@include file="/jspf/menu.jspf"%>
+            
+            <%@include file="/jspf/dialogs.jspf"%>
 
             <section class="first"></section>
             
@@ -79,6 +85,14 @@
                                id="submitMsg" 
                                value="<fmt:message bundle="${text}" key="page.msg.submit"/>" 
                                disabled/>
+                    </form>
+                    
+                    <form   id="deleteMessageForm"
+                            method="post"
+                            action="<%=request.getContextPath()%>/Controller?method=<%=Message.PostMethod.TRASH%>">
+                        
+                        <input type="hidden" id="deleteMessageID" name="messageID"/>
+                        
                     </form>
                     
                 </article>
