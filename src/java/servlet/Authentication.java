@@ -1,5 +1,6 @@
 package servlet;
 
+import dto.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -7,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.UserServices;
 
 @WebServlet(name = "Authentication", urlPatterns = {"/Authentication"})
 public class Authentication extends HttpServlet {
@@ -16,10 +18,11 @@ public class Authentication extends HttpServlet {
         
         response.setContentType("text;charset=UTF-8");
         
-        request.getSession().setAttribute("fbUserID", request.getParameter("fbUserID"));
-        request.getSession().setAttribute("fbName", request.getParameter("fbName"));
-        request.getSession().setAttribute("fbEmail", request.getParameter("fbEmail"));
-        request.getSession().setAttribute("fbUserImg", request.getParameter("fbUserImg"));
+        User user = UserServices.getUserFromRequest(request);
+        
+        user = UserServices.authenticate(user);
+        
+        UserServices.setUserParamsToSession(user, request.getSession());
         
         try (PrintWriter out = response.getWriter()) {
             out.println("Login successful for user: " + request.getParameter("fbUserID"));

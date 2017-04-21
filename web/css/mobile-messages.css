@@ -1,0 +1,33 @@
+/**
+ *  Messages
+ */
+
+@media only screen and (orientation: portrait) {
+    .msgDate {
+        font-size: .15em;
+    }
+    
+    .msgBody {
+        font-size: .4em;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .msgDate {
+        font-size: .5em;
+    }   
+}
+
+#userName {
+    font-size: 1em;
+}
+
+.msgUserName {
+    font-size: 1em;
+}
+
+
+
+.msg {
+    max-width: 90%;
+}

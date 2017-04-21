@@ -5,16 +5,18 @@
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="lang.text" var="text" scope="session" />
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><fmt:message bundle="${text}" key="page.title"/></title>
-        <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/error.ico" />
-        <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="shortcut icon" href="${contextPath}/img/error.ico" />
+        <link href="${contextPath}/css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <img id="error_page_img" src="<%=request.getContextPath()%>/img/icons/error.png" alt=""/>
+        <img id="error_page_img" src="${contextPath}/img/icons/error.png" alt=""/>
         <h1 id="error_title"><fmt:message bundle="${text}" key="error.title"/></h1>
         <p id="error_instructions"><fmt:message bundle="${text}" key="error.instructions"/></p>
     </body>

@@ -44,6 +44,7 @@ body {
     grid-column-start: middle;
     grid-row-start: main;
     padding: 20px;
+    background-color: white;
 }
 
 .third {
@@ -117,6 +118,7 @@ body {
     left: 0;
     width: 99.5%;
     box-shadow: 1px 2px 10px #888888;
+    z-index: 99;
 }
 
 .nav-button-article {
@@ -220,6 +222,25 @@ body {
 }
 
 /**
+ *   Dialogs
+ */
+
+.alertDialog, .confirmDialog {
+    padding: 20px;
+    text-align: center;
+    background: lightgrey;
+    border: 1px solid grey;
+    border-radius: 5px;
+    min-width: 200px;
+    display: none;
+}
+
+.confirmButtons {
+    margin-top: 20px;
+    float: right;
+}
+
+/**
  *   Footer
  */
 
@@ -299,22 +320,30 @@ body {
     color: purple;
 }
 
+/**
+ *  Facebook
+ */
 
-#ipsum {
-    //width: 100px;
+#fbLoginButton {
+    margin-bottom: 20px;
+}
+
+.fbProfilePic {
+    width: 30px;
 }
 
 /**
  *   Old
  */
 
-fieldset {
+.fieldset {
     background: rgba(241,241,241,1);
     margin-top: 20px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 20px;
 }
 
 fieldset legend {

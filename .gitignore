@@ -1,2 +1,9 @@
 /dist/
 /src/java/lib/Secret.java
+queries/
+/build/
+/nbproject/private/
+
+nbproject/private/private\.properties
+
+\.DS_Store

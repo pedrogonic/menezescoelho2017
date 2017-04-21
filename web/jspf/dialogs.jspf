@@ -1,0 +1,73 @@
+<%@page import="lib.Utils"%>
+<section class="dialogs">
+        
+    <article class="confirmDialog">
+        <article>
+            <span class="confirmText"></span>
+        </article>
+        <article class="confirmButtons">
+            <button class="cancelBtn"><fmt:message bundle="${text}" key="dialog.no"/></button>
+            <button class="confirmBtn"><fmt:message bundle="${text}" key="dialog.yes"/></button>
+        </article>
+    </article>        
+    
+    <article class="alertDialog">
+        <span class="alertText"></span>
+    </article> 
+    
+</section>
+<script>
+    
+    /* Closes confirm dialog */
+    function bPopupConfirmClose() {
+        $('.confirmDialog').bPopup().close();
+    }
+    
+    /* Clears the onClick bindings for both confirmDialog buttons, so they won't stack */
+    function clearConfirmBindings() {
+        $('.cancelBtn').off('click'); // unbinding previous function
+        $('.confirmBtn').off('click'); // unbinding previous function
+    }
+    
+    /**
+     * Shows a confirm dialog using bPopup library.
+     * @param {string} confirmText
+     * @param {function} confirmCallback
+     * @param {array of arguments} confirmArgs
+     * @param {function} denyCallback (OPTIONAL) callback function for deny. Closes popup if undefined
+     * @param {array of argument} denyArgs (OPTIONAL)
+     */
+    function bPopupConfirm(confirmText, confirmCallback, confirmArgs, denyCallback, denyArgs) {
+        
+        $('.confirmText').html(confirmText);
+        
+        clearConfirmBindings(denyCallback);
+        if (denyCallback === undefined)
+            denyCallback = bPopupConfirmClose;
+        
+        $('.cancelBtn').on('click', function() { applyConfirmCallback(denyCallback, denyArgs); });
+        $('.confirmBtn').on('click', function() { applyConfirmCallback(confirmCallback, confirmArgs); });
+        
+        $('.confirmDialog').bPopup({
+            modalClose: false,
+            escClose: false
+        });
+        
+    }
+    
+    function applyConfirmCallback(callback, args) {
+        
+        clearConfirmBindings();
+        callback.apply(this, args);
+        
+    }
+    
+    function bPopupAlert(alertText) {
+        
+        $('.alertText').html(alertText);
+        $('.alertDialog').bPopup();
+        
+    }
+    
+</script>
+            

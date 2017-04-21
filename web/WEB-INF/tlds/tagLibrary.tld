@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
+    <tlib-version>1.0</tlib-version>
+    <short-name>taglibrary</short-name>
+    <uri>/WEB-INF/tlds/tagLibrary</uri>
+  
+    <tag>
+        <name>MessageTag</name>
+        <tag-class>tags.MessageTag</tag-class>
+        <body-content>empty</body-content>
+        <description>custom tag for displaying Message dto</description>
+        
+        <attribute>
+            <name>message</name>
+            <required>true</required>
+            <type>dto.Message</type>
+            <rtexprvalue>true</rtexprvalue>
+	</attribute>
+        
+        <attribute>
+            <name>postMessage</name>
+            <required>false</required>
+            <type>dto.Message</type>
+            <rtexprvalue>true</rtexprvalue>
+	</attribute>
+        
+	<attribute>
+            <name>replyMessage</name>
+            <required>false</required>
+            <type>dto.Message</type>
+            <rtexprvalue>true</rtexprvalue>
+	</attribute>
+        
+        <attribute>
+            <name>contextPath</name>
+            <required>true</required>
+            <type>String</type>
+            <rtexprvalue>true</rtexprvalue>
+	</attribute>
+    </tag>
+    
+</taglib>

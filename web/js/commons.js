@@ -1,4 +1,4 @@
-/* global lang, requestURI, fbName */
+/* global lang, requestURI, fbName, fbUserImg */
 
 $(document).ready(function() {
     
@@ -17,8 +17,17 @@ function changeLocale(langSel) {
 /* Callback for facebook authentication success */
 function grantAccess() {
     
+    // Hide button
+    $('#fbLoginButton').hide();
+    
+    // Welcome
     $('#fbName').html(', ' + fbName);
     
-    //TODO let user submit messages and trash his/her messages. 
+    // Message
+    var pic = '<img id="userPic" class="fbProfilePic" src="' + fbUserImg + '"/>';
+    $('#userPic').html(pic);
+    $('#userName').html(fbName);
+    $('#userInfo').show();
+    $('#submitMsg').attr('disabled', false);
     
 }

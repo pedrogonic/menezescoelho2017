@@ -15,8 +15,11 @@ public class Utils {
     public static final String EVENT_EMAIL = "menezescoelho2017@gmail.com";
     public static final String SUBJECT = "menezescoelho2017 hotsite";
     
+    public static final dao.DAOFactory.Type DEFAULT_DB = dao.DAOFactory.Type.POSTGRES;
+    
     /** END */
     
+    public static final String REQUEST_URI = "/menezescoelho2017/";
     public static final String FB_DEFAULT_PROFILE_PIC = "/img/icons/fb-no-profile.jpg";
     public static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter READABLE_DF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -33,13 +36,23 @@ public class Utils {
         
         private Page(String pageName) { this.pageName = pageName;}
         
+        public static Page fromString(String text) {
+            
+            for (Page p : Page.values()) {
+                if (p.getPageName().equalsIgnoreCase(text)) {
+                    return p;
+                }
+            }
+            return null;
+        
+        }
         
         public String getPageName() { return this.pageName; }
         
         @Override
         public void close() {}
     }
-            
+      
     
     public static long daysToGo() {
         try {
@@ -58,6 +71,16 @@ public class Utils {
     public static boolean isMobile(HttpServletRequest request) {
         
         return request.getHeader("User-Agent").toLowerCase().contains("mobi");
+        
+    }
+    
+    public static Page stripPageNameFromRequestURI (String page) {
+        
+        page = page.replace(REQUEST_URI, "");
+        if ( page.equals("") )
+            return Page.INDEX;
+        else
+            return Page.fromString(page);
         
     }
     
