@@ -7,7 +7,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="tagLibrary" prefix="tl"%>
 <c:set var="defaultLang" value="pt_BR" scope="session" />
-<c:set var="lang" value="${not empty param.lang ? param.lang : defaultLang}" scope="session" />
+<c:set var="lang" value="${not empty sessionScope.lang ? sessionScope.lang : defaultLang}" scope="session" />
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="lang.text" var="text" scope="session" />
 

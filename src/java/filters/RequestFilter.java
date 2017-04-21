@@ -51,7 +51,8 @@ public class RequestFilter implements Filter {
         HttpSession session = req.getSession();
         
         String query = req.getRequestURI();
-        System.out.println("query: "+query);
+        if (FILTER_DEBUG)
+            System.out.println("query: "+query);
         Enumeration<String> params = req.getParameterNames();
         
         Utils.Page pageInSession = (Utils.Page) session.getAttribute("currentPage");
@@ -61,6 +62,10 @@ public class RequestFilter implements Filter {
         Utils.Page currentURI = Utils.stripPageNameFromRequestURI(req.getRequestURI());
         if (FILTER_DEBUG)
             System.out.println("currURI: "+currentURI);
+        
+        String lang = req.getParameter("lang");
+        if(lang != null && !lang.equals(""))
+            session.setAttribute("lang", lang);
         
         // Redirect to controller if page Attribute in session is not set ot if it doesn't match URI
         if ( !( pageInSession != null && pageInSession.equals(currentURI) ) ){
@@ -122,7 +127,9 @@ public class RequestFilter implements Filter {
             
             response.sendRedirect(request.getContextPath()+"/Controller?page="+currentURI);
             
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        } 
         
     }
     
