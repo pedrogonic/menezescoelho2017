@@ -106,7 +106,21 @@
         
         $(window).scroll(function() {   
            
-           var menuHeight = $('.menu').position().top
+           fixMenuAndNav();
+        
+        });
+        
+        <c:if test="${mobile}">
+            $(window).on("orientationchange",function(){
+
+                hideNav();
+
+            });
+        </c:if>
+        
+        function fixMenuAndNav() {
+            
+            var menuHeight = $('.menu').position().top
                 + $('.menu').height() 
                 + parseInt($('.menu').css('padding-top').replace('px','')) 
                 + parseInt($('.menu').css('padding-bottom').replace('px',''));
@@ -131,8 +145,8 @@
                 $('.nav').removeClass('fixed');
                 $('.nav').css({top: menuHeight});
             }
-        
-        });
+            
+        }
         /** end */
         
         /** 
@@ -153,9 +167,16 @@
         /** end */
         
         function showHideNav() {
+            fixMenuAndNav();
             $(".nav").slideToggle();
             $('#nav-button-fb').toggle('slide');
             $('#nav-button-mail').toggle('slide');
+        }
+        
+        function hideNav() {
+            $(".nav").slideUp();
+            $('#nav-button-fb').hide('slide');
+            $('#nav-button-mail').hide('slide');
         }
         
         $(".menuLink").click(function() {

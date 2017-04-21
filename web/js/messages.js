@@ -1,4 +1,4 @@
-/* global bPopupConfirmClose, confirmDeletionMsg, contextPath, deleteResult, deletedText, resultDeleted */
+/* global bPopupConfirmClose, confirmDeletionMsg, contextPath, deleteResult, deletedText, resultDeleted, mobile */
 
 /* Changes username's color in new message */
 function changeColor() {
@@ -20,12 +20,14 @@ $(document).ready(function() {
 
     });
     
-    /* Applies masonry library */
-    $('.mural').masonry({
-        // options
-        itemSelector: '.msg',
-        gutter: 10
-    });
+    if (!mobile) {
+        /* Applies masonry library */
+        $('.mural').masonry({
+            // options
+            itemSelector: '.msg',
+            gutter: 10
+        });
+    }
     
     /* Flashes newly posted message */
     $('.postedMsg').effect('highlight');

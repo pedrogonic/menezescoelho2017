@@ -37,8 +37,6 @@ pageContext.setAttribute("rd", request.getContextPath()+"/Controller?page="+Util
         
         <%@include file="/jspf/includes.jspf"%>
         
-       
-        
         <script>
             var confirmDeletionMsg = '<fmt:message bundle="${text}" key="page.msg.confirm.delete"/>';
             var resultDeleted = '<c:out value="${resultDeleted}"/>';
@@ -47,6 +45,9 @@ pageContext.setAttribute("rd", request.getContextPath()+"/Controller?page="+Util
         </script>
         
         <link href="<%=request.getContextPath()%>/css/messages.css" rel="stylesheet" type="text/css"/>
+        <c:if test="${mobile}">
+            <link href="<%=request.getContextPath()%>/css/mobile-messages.css" rel="stylesheet" type="text/css"/>
+        </c:if>
         
         <script src="<%=request.getContextPath()%>/js/messages.js" type="text/javascript"></script>
         <script src="<%=request.getContextPath()%>/js/masonry.pkgd.min.js" type="text/javascript"></script>
@@ -72,7 +73,9 @@ pageContext.setAttribute("rd", request.getContextPath()+"/Controller?page="+Util
                     
                     <% if (!(fbUserID != null && !fbUserID.equals(""))) { %>
                     <article id="fbLoginButton">
-                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+                        <div class="fb-login-button" data-max-rows="1" data-size="medium" 
+                             data-button-type="login_with" data-show-faces="false" 
+                             data-auto-logout-link="false" data-use-continue-as="true"></div>
                     </article>
                     <% } %>
                     

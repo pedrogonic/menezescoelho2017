@@ -2,32 +2,126 @@
  *   Windows layout
  */
 
-/*html {
-    background-color: rgba(143, 143, 143, 1);
-}*/
+html {
+    background-color: rgba(241,241,241,1);
+}
 
+@media only screen and (orientation: portrait) {
+    
+    .content {
+        display: grid;
+        min-height: 100%;
+        grid-template-columns: [left] 5% [middle] 90% [right] 5%;
+        grid-template-rows: [header] 300px [menu] 100px [main] auto [footer] 50px;
+    }
+    
+    /**
+     *   Menu
+     */
+    
+    .menu {
+        height: 100px;
+    }
+    
+    .flag {
+        height: 100px;
+    }
+    
+    .nav-button-article {
+        width: 100px;
+    }
+
+    .nav-button {
+        height: 100px;
+    }
+    
+    .second {
+        font-size: 4em;
+    }
+    
+    .fbProfilePic {
+        width: 50px;
+    }
+    
+    /**
+     *   Footer
+     */
+
+    .footer {
+        font-size: .7em;
+    }
+    
+}
+
+@media only screen and (orientation: landscape) {
+    
+    .content {
+        display: grid;
+        min-height: 100%;
+        grid-template-columns: [left] 5% [middle] 90% [right] 5%;
+        grid-template-rows: [header] 300px [menu] 50px [main] auto [footer] 50px;
+    }
+    
+    /**
+     *   Menu
+     */
+    
+    .menu {
+        height: 50px;
+    }
+    
+    .flag {
+        height: 50px;
+    }
+    
+    .nav-button-article {
+        width: 50px;
+    }
+
+    .nav-button {
+        height: 50px;
+    }
+    
+    .second {
+        font-size: 1.5em;
+    }
+    
+    .fbProfilePic {
+        width: 30px;
+    }
+    
+    /**
+     *   Footer
+     */
+
+    .footer {
+        font-size: 0.9rem;
+    }
+}
+    
 .first {
-    display:none;
 }
 
 .second {
-    font-size: 3vh;
+    grid-column-start: middle;
+    grid-column-end: end;
+    grid-row-start: main;
 }
 
 .third {
-    display:none;
 }
 
 /**
  *   Menu
  */
 
-.menu {
-    height: 100px;
-}
 
 .nav {
     font-size: 3vh;
+}
+
+.menu {
+    z-index: 99;
 }
 
 .menu.fixed {
@@ -44,20 +138,11 @@
     width: 100%;
 }
 
-.nav-button-article {
-    width: 100px;
-}
-
-.nav-button {
-    height: 100px;
-}
-
 input[type=radio] {
     display:none;
 }
 
 .flag {
-    height: 100px;
     opacity: .6;
 }
 
@@ -79,13 +164,21 @@ input[type=radio] {
 }
 
 /**
+ *  Dialogs
+ */
+
+.dialogs {
+    position: absolute;
+}
+
+.msgDate {
+    font-size: 0.3em;
+}
+
+/**
  *   Footer
  */
 
-.footer {
-    font-size: .9em;
-    background-color: white;
-}
 
 .disclaimer {
     float:none;

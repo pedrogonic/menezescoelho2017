@@ -44,6 +44,7 @@ body {
     grid-column-start: middle;
     grid-row-start: main;
     padding: 20px;
+    background-color: white;
 }
 
 .third {
