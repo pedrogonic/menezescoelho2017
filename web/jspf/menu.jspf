@@ -2,27 +2,27 @@
 <section class="menu">
         
         <article class="nav-button-article" id="nav-button-menu">
-            <img class="nav-button" id="menu-button" src="<%=request.getContextPath()%>/img/icons/menu_white.png" alt="" onclick="showHideNav();"/>
+            <img class="nav-button" id="menu-button" src="${contextPath}/img/icons/menu_white.png" alt="" onclick="showHideNav();"/>
         </article>
         
         <article class="nav-button-article" id="nav-button-fb">
-            <img class="nav-button" src="<%=request.getContextPath()%>/img/icons/facebook.png" alt=""/>
+            <img class="nav-button" src="${contextPath}/img/icons/facebook.png" alt=""/>
         </article>
         
         <article class="nav-button-article" id="nav-button-mail">
             <a href="mailto:<%=Utils.EVENT_EMAIL%>?Subject=<%=Utils.SUBJECT%>" target="_top">
-                <img class="nav-button" src="<%=request.getContextPath()%>/img/icons/email.png" alt=""/>
+                <img class="nav-button" src="${contextPath}/img/icons/email.png" alt=""/>
             </a>
         </article>
         
         <article id="lang">
              
             <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('pt_BR')">
-                <img class="flag" id="flag_pt_BR" onclick="changeLocale('pt_BR')" src="<%=request.getContextPath()%>/img/flags/BR.png" alt=""/>
+                <img class="flag" id="flag_pt_BR" onclick="changeLocale('pt_BR')" src="${contextPath}/img/flags/BR.png" alt=""/>
             </input>
             
             <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('es_AR')">
-                <img class="flag" id="flag_es_AR" onclick="changeLocale('es_AR')" src="<%=request.getContextPath()%>/img/flags/AR.png" alt=""/>
+                <img class="flag" id="flag_es_AR" onclick="changeLocale('es_AR')" src="${contextPath}/img/flags/AR.png" alt=""/>
             </input>
         
         </article>
@@ -37,55 +37,55 @@
             <ul>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.INDEX%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.INDEX%>'>
                         <fmt:message bundle="${text}" key="nav.top"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.ABOUT%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.ABOUT%>'>
                         <fmt:message bundle="${text}" key="nav.about"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.RSVP%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.RSVP%>'>
                         <fmt:message bundle="${text}" key="nav.rsvp"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.MSG%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.MSG%>'>
                         <fmt:message bundle="${text}" key="nav.msg"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.CEREMONY%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.CEREMONY%>'>
                         <fmt:message bundle="${text}" key="nav.ceremony"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.PARTY%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.PARTY%>'>
                         <fmt:message bundle="${text}" key="nav.party"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.BACHELOR%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BACHELOR%>'>
                         <fmt:message bundle="${text}" key="nav.bachelor"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.BESTMEN%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BESTMEN%>'>
                         <fmt:message bundle="${text}" key="nav.bestmen"/>
                     </a>
                 </li>
                 
                 <li class="menuLink">
-                    <a href='<%=request.getContextPath() + "/Controller?page=" + Utils.Page.GIFT%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.GIFT%>'>
                         <fmt:message bundle="${text}" key="nav.gift"/>
                     </a>
                 </li>

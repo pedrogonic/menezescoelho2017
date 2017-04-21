@@ -21,7 +21,7 @@ public class Message {
     }
     
     public static enum PostMethod implements AutoCloseable {
-        POST_MESSAGE("post"), REPLY_MESSAGE("reply"), TRASH("trash");
+        POST_MESSAGE("Posted"), REPLY_MESSAGE("Replied"), TRASH("Trashed");
         
         private final String methodName;
         

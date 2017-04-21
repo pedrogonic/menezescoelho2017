@@ -2,82 +2,73 @@
 <%@page import="lib.Utils"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
-<%@ page  contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="tagLibrary" prefix="tl"%>
+
+
+<!-- Vars and config -->
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<c:set var="requestURI" value="$<%=request.getRequestURI()%>" />
+
 <c:set var="defaultLang" value="pt_BR" scope="session" />
 <c:set var="lang" value="${not empty sessionScope.lang ? sessionScope.lang : defaultLang}" scope="session" />
 <fmt:setLocale value="${lang}" />
 <fmt:setBundle basename="lang.text" var="text" scope="session" />
 
-<%
-    
-    String readableBigDay = Utils.READABLE_BIG_DAY;
-    pageContext.setAttribute("bigDay", readableBigDay);
-    
-    String daysToGo = (String) session.getAttribute("daysToGo");
-    pageContext.setAttribute("daysToGo", daysToGo);
-    session.removeAttribute("daysToGo");
-    
-    boolean mobile = false;
-    try{
-        mobile = (Boolean)session.getAttribute("mobile");
-    } catch(Exception e) {}
-    pageContext.setAttribute("mobile", mobile);
-    
-    String fbID = Secret.FB_APP_ID;
-    pageContext.setAttribute("fbID", fbID);
-    
-    String fbUserID = (String) session.getAttribute("fbUserID");
-    pageContext.setAttribute("fbUserID", fbUserID);
-    
-    int userID = 0;
-    try{
-        userID = (Integer)session.getAttribute("userID");
-    } catch(Exception e) {}  
-    pageContext.setAttribute("userID", userID);
-    
-    String fbName = (String) session.getAttribute("fbName");
-    pageContext.setAttribute("fbName", fbName);
-    
-    String fbEmail = (String) session.getAttribute("fbEmail");
-    pageContext.setAttribute("fbEmail", fbEmail);
-    
-    String fbUserImg = (String) session.getAttribute("fbUserImg");
-    pageContext.setAttribute("fbUserImg", fbUserImg);
-    
-%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" scope="session" />
+<c:set var="bigDay" value="<%=Utils.READABLE_BIG_DAY%>" />
+
+<c:set var="daysToGo" value="${sessionScope.daysToGo}" /> 
+<c:remove var="daysToGo" scope="session" /> 
+
+<c:set var="mobile" value="${not empty sessionScope.mobile ? sessionScope.mobile : false}" />
+
+<c:set var="fbID" value="<%=Secret.FB_APP_ID%>" />
+
+<c:set var="fbUserID" value="${sessionScope.fbUserID}" /> 
+
+<c:set var="userID" value="${not empty sessionScope.userID ? sessionScope.userID : 0}" />
+
+<c:set var="fbName" value="${sessionScope.fbName}" /> 
+
+<c:set var="fbEmail" value="${sessionScope.fbEmail}" /> 
+
+<c:set var="fbUserImg" value="${sessionScope.fbUserImg}" /> 
+
 <c:set var="mobile" value="${mobile}" scope="session" />
 
-<link rel="shortcut icon" href="<%=request.getContextPath()%>/img/favicon.ico" />
+
+<!-- Scripts and Style -->
+<link rel="shortcut icon" href="${contextPath}/img/favicon.ico" />
         
-<link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" type="text/css"/>
+<link href="${contextPath}/css/styles.css" rel="stylesheet" type="text/css"/>
  
 <c:if test="${mobile}">
-    <link href="<%=request.getContextPath()%>/css/mobile-styles.css" rel="stylesheet" type="text/css"/>
+    <link href="${contextPath}/css/mobile-styles.css" rel="stylesheet" type="text/css"/>
 </c:if>
 
-<script src="<%=request.getContextPath()%>/js/jquery-2.1.0.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.4.min.js" type="text/javascript"></script>
+<script src="${contextPath}/js/jquery-2.1.0.min.js" type="text/javascript"></script>
+<script src="${contextPath}/js/jquery-ui-1.10.4.min.js" type="text/javascript"></script>
 
 <script>
     
     var lang = '${lang}';
-    var contextPath = '<%=request.getContextPath()%>';
-    var requestURI = '<%=request.getRequestURI()%>';
+    var contextPath = '${contextPath}';
+    var requestURI = '${requestURI}';
     var fbID = '${fbID}';
     var fbUserID = '${fbUserID}';
     var fbName = '${fbName}';
     var fbEmail = '${fbEmail}';
     var fbUserImg = '${fbUserImg}';
-    var defaultFbUserImg = '<%=request.getContextPath() + Utils.FB_DEFAULT_PROFILE_PIC%>';
+    var defaultFbUserImg = '${contextPath}<%=Utils.FB_DEFAULT_PROFILE_PIC%>';
     var mobile = ${mobile};
     
 </script>
 
-<script src="<%=request.getContextPath()%>/js/commons.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/js/facebook.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.bpopup.min.js" type="text/javascript"></script>
+<script src="${contextPath}/js/commons.js" type="text/javascript"></script>
+<script src="${contextPath}/js/facebook.js" type="text/javascript"></script>
+<script src="${contextPath}/js/jquery.bpopup.min.js" type="text/javascript"></script>
 

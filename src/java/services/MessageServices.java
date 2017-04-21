@@ -123,14 +123,22 @@ public class MessageServices {
      */
     public static void setMessageToSession(Message message, Message.PostMethod method, HttpSession session) {
         
-        session.setAttribute(method.getMethodName() + "Message", message);
+        session.setAttribute("message" + method.getMethodName(), message);
         
     }
     
+    /**
+     * Utility message method that gets message from session.
+     * Deprecated since Scriptlets were abolished.
+     * @param method
+     * @param session
+     * @return 
+     */
+    @Deprecated
     public static Message getMessageFromSession(Message.PostMethod method, HttpSession session) {
         
         Message message = (Message) session.getAttribute(method.getMethodName() + "Message");
-        session.removeAttribute(method.getMethodName() + "Message");
+        session.removeAttribute("message" + method.getMethodName());
         return message;
         
     }

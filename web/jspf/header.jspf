@@ -4,7 +4,7 @@
     
     
     
-    <img class="banner_img" src="<%=request.getContextPath()%>/img/banner.jpg" alt=""/>
+    <img class="banner_img" src="${contextPath}/img/banner.jpg" alt=""/>
     
     <script>
         
@@ -19,7 +19,7 @@
         <article>
 
             <article class="logo_top">
-                <img src="<%=request.getContextPath()%>/img/filigranas/top.png" alt=""/>
+                <img src="${contextPath}/img/filigranas/top.png" alt=""/>
             </article>
             
             <article class="logo_date">
@@ -31,8 +31,7 @@
             </article>
 
             <article class="logo_middle">
-                <img src="<%=request.getContextPath()%>/img/filigranas/mid.png" alt=""/>
-                <!--img src="<%=request.getContextPath()%>/img/filigranas/separadores-de-texto5.gif" alt=""/-->
+                <img src="${contextPath}/img/filigranas/mid.png" alt=""/>
             </article>
             
             <article class="logo_left">
@@ -42,7 +41,7 @@
             </article>
 
             <article class="logo_bot">
-                <img src="<%=request.getContextPath()%>/img/filigranas/bot.png" alt=""/>
+                <img src="${contextPath}/img/filigranas/bot.png" alt=""/>
             </article>
             
         </article>

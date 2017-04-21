@@ -45,12 +45,12 @@ public class Controller extends HttpServlet {
                     
                     User user = UserServices.getUserFromSession(session);
                     List<Message> messageList = MessageServices.getAllMessages(user);
-                    Message messagePosted = MessageServices.getMessageFromSession(Message.PostMethod.POST_MESSAGE, session);
-                    Message messageReplied = MessageServices.getMessageFromSession(Message.PostMethod.REPLY_MESSAGE, session);
+//                    Message messagePosted = MessageServices.getMessageFromSession(Message.PostMethod.POST_MESSAGE, session);
+//                    Message messageReplied = MessageServices.getMessageFromSession(Message.PostMethod.REPLY_MESSAGE, session);
                     
                     session.setAttribute("messageList", messageList);
-                    session.setAttribute("messagePosted", messagePosted);
-                    session.setAttribute("messageReplied", messageReplied);
+//                    session.setAttribute("messagePosted", messagePosted);
+//                    session.setAttribute("messageReplied", messageReplied);
                     break;
                     
             }
@@ -130,7 +130,7 @@ public class Controller extends HttpServlet {
                     
                 case TRASH:
                     Message trashMessage = MessageServices.getMessageFromRequest(request);
-                    if ( trashMessage != null )
+                    if ( trashMessage != null ) 
                         session.setAttribute("deleteResult", MessageServices.trashMessage(trashMessage));
                     request.setAttribute("page",Utils.Page.MSG.toString());
                     break;
