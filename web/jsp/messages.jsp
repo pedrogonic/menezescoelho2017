@@ -6,11 +6,13 @@
 <%
     
     List<Message> messageList = (List) session.getAttribute("messageList");
-    if ( messageList == null || messageList.equals("null")) {
-        response.sendRedirect(request.getContextPath()+"/Controller?page="+Utils.Page.MSG);
-        return;
-    }
+//    if ( messageList == null || messageList.equals("null")) {
+//        response.sendRedirect(request.getContextPath()+"/Controller?page="+Utils.Page.MSG);
+//        return;
+//    }
     
+pageContext.setAttribute("rd", request.getContextPath()+"/Controller?page="+Utils.Page.MSG);
+
     pageContext.setAttribute("messageList", messageList);
     session.removeAttribute("messageList");
     
@@ -34,6 +36,8 @@
     <head>
         
         <%@include file="/jspf/includes.jspf"%>
+        
+       
         
         <script>
             var confirmDeletionMsg = '<fmt:message bundle="${text}" key="page.msg.confirm.delete"/>';
