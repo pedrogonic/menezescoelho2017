@@ -70,6 +70,7 @@ public class UserServices {
         session.setAttribute("userID", user.getUserID());
         session.setAttribute("fbUserID", user.getFbUserID());
         session.setAttribute("fbName", user.getUserName());
+        session.setAttribute("userName", user.getUserName());
         session.setAttribute("fbEmail", user.getUserEmail());
         session.setAttribute("fbUserImg", user.getUserPicURL());
         
