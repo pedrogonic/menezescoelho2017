@@ -12,7 +12,7 @@
 <!-- Vars and config -->
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-<c:set var="requestURI" value="$<%=request.getRequestURI()%>" />
+<c:set var="requestURI" value="<%=request.getRequestURI()%>" />
 
 <c:set var="defaultLang" value="pt_BR" scope="session" />
 <c:set var="lang" value="${not empty sessionScope.lang ? sessionScope.lang : defaultLang}" scope="session" />
