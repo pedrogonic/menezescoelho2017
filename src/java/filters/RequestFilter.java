@@ -1,12 +1,9 @@
 package filters;
 
-import dto.Message;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Enumeration;
-import java.util.List;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -50,39 +47,41 @@ public class RequestFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         
-        String query = req.getRequestURI();
-        if (FILTER_DEBUG)
-            System.out.println("query: "+query);
-        Enumeration<String> params = req.getParameterNames();
+        boolean controller;
+        try {
+            controller = (Boolean) session.getAttribute("Controller");
+        } catch (Exception e) { controller = false; }
+        session.removeAttribute("Controller");
         
-        Utils.Page pageInSession = (Utils.Page) session.getAttribute("currentPage");
         if (FILTER_DEBUG)
-            System.out.println("curr: "+pageInSession);
+            System.out.println("Valid: " + controller);
+        
+        String queryString = req.getQueryString();
+        if (FILTER_DEBUG)
+            System.out.println("QueryString: "+queryString);
+        
+        String uri = req.getRequestURI();
+        if (FILTER_DEBUG)
+            System.out.println("URI: "+uri);
+        
+//        Enumeration<String> params = req.getParameterNames();
         
         Utils.Page currentURI = Utils.stripPageNameFromRequestURI(req.getRequestURI());
         if (FILTER_DEBUG)
-            System.out.println("currURI: "+currentURI);
+            System.out.println("Objective: "+currentURI);
         
+        // Setting lang to session from parameter
         String lang = req.getParameter("lang");
         if(lang != null && !lang.equals(""))
             session.setAttribute("lang", lang);
         
-        // Redirect to controller if page Attribute in session is not set ot if it doesn't match URI
-        if ( !( pageInSession != null && pageInSession.equals(currentURI) ) ){
-            redirect(req, res, currentURI);
-            return;
-        }
         
-        // Check for known contents and redirect if conditions are not met
-        switch (currentURI) {
+        if ( !controller ) {
             
-            case MSG:
-                List<Message> messageList = (List)session.getAttribute("messageList");
-                if(messageList == null) 
-                    redirect(req, res, currentURI);
-                break;
-                
+            redirect(req, res, currentURI, queryString);
+            
         }
+
         
 //        while(params.hasMoreElements()){
 //			String name = params.nextElement();
@@ -118,14 +117,20 @@ public class RequestFilter implements Filter {
     }
 
     @SuppressWarnings("CallToPrintStackTrace")
-    public void redirect(HttpServletRequest request, HttpServletResponse response, Utils.Page currentURI) {
+    public void redirect(HttpServletRequest request
+                        , HttpServletResponse response
+                        , Utils.Page currentURI
+                        , String queryString) {
         
         try {
             
             if (FILTER_DEBUG)
                 System.out.println("Redirecting to " + currentURI);
             
-            response.sendRedirect(request.getContextPath()+"/Controller?page="+currentURI);
+            request.getSession().setAttribute("page",currentURI);
+            
+            response.sendRedirect(request.getContextPath() + "/Controller?page=" + currentURI
+                                        + "&" + queryString);
             
         } catch (IOException e) { 
             e.printStackTrace(); 

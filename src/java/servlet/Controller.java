@@ -55,7 +55,6 @@ public class Controller extends HttpServlet {
                     
             }
         
-            session.setAttribute("currentPage", page);
             redirect(request,response,page);
             
         } catch (Exception e){ e.printStackTrace(); redirect(request, response, Utils.Page.ERROR); }
@@ -72,6 +71,8 @@ public class Controller extends HttpServlet {
         session.setAttribute("mobile", Utils.isMobile(request));
         
         session.setAttribute("daysToGo", Long.toString(Utils.daysToGo()));
+        
+        session.setAttribute("Controller", true);
         
         response.sendRedirect(page.getPageName());
         
