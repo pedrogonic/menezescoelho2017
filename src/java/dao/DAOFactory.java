@@ -33,6 +33,8 @@ public abstract class DAOFactory implements AutoCloseable {
     
     public abstract UserDAO getUserDAO();
     
+    public abstract BestPersonDAO getBestPersonDAO();
+    
     @Override
     public abstract void close();
     

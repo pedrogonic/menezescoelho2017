@@ -73,7 +73,7 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BACHELOR%>'>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.SHOWER%>'>
                         <fmt:message bundle="${text}" key="nav.bachelor"/>
                     </a>
                 </li>

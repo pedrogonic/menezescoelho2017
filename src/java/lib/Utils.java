@@ -30,8 +30,8 @@ public class Utils {
     public enum Page implements AutoCloseable {
         INDEX ("jsp/index.jsp"), ABOUT ("jsp/about.jsp"), RSVP ("jsp/index.jsp")
         , MSG ("jsp/messages.jsp"), CEREMONY ("jsp/index.jsp"), PARTY ("jsp/index.jsp")
-        , BACHELOR ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), GIFT ("jsp/index.jsp")
-        , ERROR ("jsp/error.jsp");
+        , SHOWER ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), GIFT ("jsp/index.jsp")
+        , ERROR ("jsp/error.jsp"), SURPRISE ("jsp/surprise.jsp");
         
         private final String pageName;
         

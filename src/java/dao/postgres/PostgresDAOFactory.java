@@ -40,6 +40,11 @@ public class PostgresDAOFactory extends DAOFactory {
     }
     
     @Override
+    public PostgresBestPersonDAO getBestPersonDAO() {
+        return new PostgresBestPersonDAO(con);
+    }
+    
+    @Override
     public void close() {
         try { if ( con != null ) { con.close(); } } catch(SQLException e) {} 
     }
