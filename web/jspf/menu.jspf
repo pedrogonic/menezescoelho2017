@@ -49,8 +49,14 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.RSVP%>'>
-                        <fmt:message bundle="${text}" key="nav.rsvp"/>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BESTMEN%>'>
+                        <fmt:message bundle="${text}" key="nav.bestmen"/>
+                    </a>
+                </li>
+                
+                <li class="menuLink">
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BESTMEN_INFO%>'>
+                        <fmt:message bundle="${text}" key="nav.bestmen_info"/>
                     </a>
                 </li>
                 
@@ -73,16 +79,16 @@
                 </li>
                 
                 <li class="menuLink">
-                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.SHOWER%>'>
-                        <fmt:message bundle="${text}" key="nav.bachelor"/>
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.RSVP%>'>
+                        <fmt:message bundle="${text}" key="nav.rsvp"/>
                     </a>
                 </li>
                 
-                <li class="menuLink">
-                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.BESTMEN%>'>
-                        <fmt:message bundle="${text}" key="nav.bestmen"/>
+                <!--li class="menuLink">
+                    <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.SHOWER%>'>
+                        <fmt:message bundle="${text}" key="nav.bachelor"/>
                     </a>
-                </li>
+                </li-->
                 
                 <li class="menuLink">
                     <a href='${contextPath}${"/Controller?page="}<%=Utils.Page.GIFT%>'>
