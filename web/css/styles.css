@@ -320,6 +320,10 @@ body {
     color: purple;
 }
 
+.main_photo img{
+    width: 100%;
+}
+
 /**
  *  Facebook
  */
