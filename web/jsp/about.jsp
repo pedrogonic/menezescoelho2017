@@ -20,8 +20,19 @@
             <section class="first"></section>
             
             <section class="second">
-                <h2 class="nick"><fmt:message bundle="${text}" key="page.construction"/></h2>
-                <fmt:message bundle="${text}" key="ipsum"/>
+                
+                <h2><fmt:message bundle="${text}" key="page.about.title"/></h2>
+                
+                <article class="main_photo">
+                
+                    <img src="https://lh3.googleusercontent.com/kllmnV6UIulSJ_XIld7cjaCmItMVEurjbxsfIm6mJjL_tG0tfu77mr5p4v83ntq2Hi_N75ESpXOx1BeG2TW89kzO7WCeuZU_8dc0F3wPQRAgIJpjz3NfdbaRFj7XAdEymmILD6sx9A"/>
+                
+                </article>
+                
+                <article class="aboutText">
+                    <fmt:message bundle="${text}" key="page.about.text"/>
+                </article>
+                    
             </section>
 
             <section class="third"></section>
