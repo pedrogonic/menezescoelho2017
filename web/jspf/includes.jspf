@@ -26,6 +26,8 @@
 
 <c:set var="mobile" value="${not empty sessionScope.mobile ? sessionScope.mobile : false}" />
 
+<c:set var="mapsAPIKey" value="<%=Secret.MAPS_API_KEYS%>" />
+
 <c:set var="fbID" value="<%=Secret.FB_APP_ID%>" />
 
 <c:set var="fbUserID" value="${sessionScope.fbUserID}" /> 

@@ -21,18 +21,25 @@
             
             <section class="second">
                 
-                <h2><fmt:message bundle="${text}" key="page.about.title"/></h2>
+                <h2><fmt:message bundle="${text}" key="page.party.title"/></h2>
                 
-                <article class="main_photo">
-                
-                    <img src="https://lh3.googleusercontent.com/kllmnV6UIulSJ_XIld7cjaCmItMVEurjbxsfIm6mJjL_tG0tfu77mr5p4v83ntq2Hi_N75ESpXOx1BeG2TW89kzO7WCeuZU_8dc0F3wPQRAgIJpjz3NfdbaRFj7XAdEymmILD6sx9A"/>
-                
+                <article class="">
+                    <fmt:message bundle="${text}" key="page.party.text"/>
                 </article>
                 
-                <article class="text ident">
-                    <fmt:message bundle="${text}" key="page.about.text"/>
-                </article>
+                <article class="maps">
                     
+                    <iframe
+                        width="600"
+                        height="450"
+                        frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?key=<c:out value="${mapsAPIKey}"></c:out>
+                          &q=espaço+1+casa+de+eventos+Rio+de+Janeiro"
+                        allowfullscreen>
+                    </iframe>
+                    
+                </article>
+                
             </section>
 
             <section class="third"></section>
