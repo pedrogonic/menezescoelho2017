@@ -27,11 +27,14 @@ public class Utils {
     
     public static final String READABLE_BIG_DAY = LocalDate.parse(BIG_DAY, DF).format(READABLE_DF);
     
+    public static final String GIFT_LIST_FAST = "http://listadecasamento.fastshop.com.br/ListaCasamento/ListaCasamentoProdutos.aspx?ID=236923";
+    public static final String GIFT_LIST_CAMICADO = "https://www.camicado.com.br/weddinglist/products/60362268";
+    
     public enum Page implements AutoCloseable {
         INDEX ("jsp/index.jsp"), ABOUT ("jsp/about.jsp"), RSVP ("jsp/index.jsp")
-        , MSG ("jsp/messages.jsp"), CEREMONY ("jsp/index.jsp"), PARTY ("jsp/index.jsp")
-        , BACHELOR ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), GIFT ("jsp/index.jsp")
-        , ERROR ("jsp/error.jsp");
+        , MSG ("jsp/messages.jsp"), CEREMONY ("jsp/ceremony.jsp"), PARTY ("jsp/party.jsp")
+        , SHOWER ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), BESTMEN_INFO ("jsp/bestmenInfo.jsp"), GIFT ("jsp/gift.jsp")
+        , ERROR ("jsp/error.jsp"), SURPRISE ("jsp/surprise.jsp");
         
         private final String pageName;
         

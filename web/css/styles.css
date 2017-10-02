@@ -284,6 +284,15 @@ body {
  *  Content
  */
 
+.ident {
+    text-indent: 30px;
+}
+
+.text p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .name {
     margin-bottom: 0px;
 }
@@ -318,6 +327,18 @@ body {
 
 .more a:hover {
     color: purple;
+}
+
+.main_photo img{
+    width: 100%;
+}
+
+.giftLink {
+    text-align: center;
+}
+
+.giftLink img {
+    width: 30%;
 }
 
 /**
