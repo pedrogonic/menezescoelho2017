@@ -88,7 +88,7 @@
                         
                         <input type="submit" 
                                id="submitMsg" 
-                               value="<fmt:message bundle="${text}" key="page.msg.submit"/>" 
+                               value="<fmt:message bundle="${text}" key="page.msg.login"/>" 
                                disabled/>
                     </form>
                     
