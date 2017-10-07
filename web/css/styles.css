@@ -359,6 +359,14 @@ body {
     cursor:not-allowed;
 }
 
+#errorMsg {
+    color: red;
+}
+
+#successMsg {
+    color: green;
+}
+
 #submitMsg {
     cursor:pointer;
 }

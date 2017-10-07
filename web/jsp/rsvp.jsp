@@ -8,6 +8,8 @@
         
         <script>
             var rsvpResult = '<c:out value="${rsvpResult}"/>';
+            var fillBlanks = '<fmt:message bundle="${text}" key="page.rsvp.fill"/>';
+            var successTxt = '<fmt:message bundle="${text}" key="page.rsvp.success"/>';
         </script>
         
         <script src="${contextPath}/js/rsvp.js" type="text/javascript"></script>
@@ -69,6 +71,8 @@
                                    id="submitMsg" 
                                    value="<fmt:message bundle="${text}" key="page.msg.login"/>" 
                                    disabled/>
+                        <span id="errorMsg"></span>
+                        <span id="successMsg"></span>
                     </article>
                                
                 </form>

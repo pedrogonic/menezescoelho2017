@@ -14,16 +14,16 @@ public class GuestServices {
      * @param guests
      * @return true if OK, false otherwise
      */
-    public static boolean rsvp(List<Guest> guests) {
+    public static int rsvp(List<Guest> guests) {
         
         if (guests == null)
-            return false;
+            return 0;
         
         try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) { 
             
             guests = daoFactory.getGuestDAO().rsvp(guests);
             
-            return guests != null;
+            return guests == null ? 0 : guests.size();
             
         }
         
