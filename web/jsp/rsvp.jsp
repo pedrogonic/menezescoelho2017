@@ -29,15 +29,25 @@
                 
                 <h2><fmt:message bundle="${text}" key="page.rsvp.title"/></h2>
                 
-                <p><fmt:message bundle="${text}" key="page.rsvp.instructions"/></p>
+                <article class="text">
+                    <fmt:message bundle="${text}" key="page.rsvp.instructions"/>
+                </article>
                 
                 <c:if test="${empty fbUserID}">
-                    <article id="fbLoginButton">
+                    <article style="margin-top: 30px;" id="fbLoginButton">
                         <div class="fb-login-button" data-max-rows="1" data-size="medium" 
                              data-button-type="login_with" data-show-faces="false" 
-                             data-auto-logout-link="false" data-use-continue-as="true"></div>
+                             data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState"></div>
                     </article>
                 </c:if>
+                
+                <article id="userInfo" style="margin-top: 20px;">
+                            
+                    <span id="userPic"></span>
+
+                    <span id="userName"></span>
+                            
+                </article>
                 
                 <form   id="rsvpForm"
                             method="post" 
@@ -47,10 +57,12 @@
                     
                     <article id="rsvpArticle">
                         <div id="fieldsDiv">
-                            <input type="text" id="rsvp1" class="rsvpField"/>
+                            <p id="rsvp1P"><input type="text" id="rsvp1" class="rsvpField"/></p>
                         </div>
-                        <span id="remove" style="display:none;">-</span>
-                        <span id="add">+</span>
+                        <div id="addRemoveDiv">
+                            <span id="remove" style="display:none;"><img class="rsvpIcons" src="${contextPath}/img/icons/minus.png" alt=""/></span>
+                            <span id="add"><img class="rsvpIcons" src="${contextPath}/img/icons/plus.png" alt=""/></span>
+                        </div>
                     </article>
                     <article>
                         <input type="submit" 

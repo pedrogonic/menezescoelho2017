@@ -63,7 +63,7 @@
                         <article id="fbLoginButton">
                             <div class="fb-login-button" data-max-rows="1" data-size="medium" 
                                  data-button-type="login_with" data-show-faces="false" 
-                                 data-auto-logout-link="false" data-use-continue-as="true"></div>
+                                 data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState"></div>
                         </article>
                     </c:if>
                     

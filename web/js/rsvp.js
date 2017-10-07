@@ -44,15 +44,18 @@ function addField() {
     
     $("#remove").show("oi");
     count++;
-    $("#fieldsDiv").append("<input type=\"text\" id=\"rsvp" + count + "\" class=\"rsvpField\"/>");
+    $("#fieldsDiv").append("<p id='rsvp" + count + "P'><input type=\"text\" id=\"rsvp" + count + "\" class=\"rsvpField\"/>");
     
 }
 
 function removeField() {
     
-    $("#rsvp"+count).remove();
+    if (count > 1) {
+    
+        $("#rsvp" + count + "P").remove();
+        count--;
         
-    count--;
+    }
 
     if (count === 1) 
         $("#remove").hide();  

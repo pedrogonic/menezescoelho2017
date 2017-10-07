@@ -33,4 +33,6 @@ function grantAccess() {
     $('#submitRSVP').attr('disabled', false);
     $('#submitRSVP').val('Enviar');
     
+    //location.reload();
+    
 }
