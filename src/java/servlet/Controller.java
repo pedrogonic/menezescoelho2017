@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lib.Utils;
+import services.GuestServices;
 import services.MessageServices;
 import services.UserServices;
 
@@ -107,7 +108,9 @@ public class Controller extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         
-        try (Message.PostMethod postMethod = Message.PostMethod.valueOf(request.getParameter("method"))) {
+        String method = request.getParameter("method");
+        
+        try (Message.PostMethod postMethod = Message.PostMethod.valueOf(method)) {
             
             switch(postMethod) {
 
@@ -138,6 +141,15 @@ public class Controller extends HttpServlet {
                     
             }
 
+        }catch (Exception e) {}
+        
+        switch(method) {
+            
+            case "rsvp":
+                session.setAttribute("rsvpResult", GuestServices.rsvp(GuestServices.getGuestsFromRequest(request)));
+                request.setAttribute("page",Utils.Page.RSVP.toString());
+                break;
+            
         }
         
         processRequest(request, response);

@@ -29,5 +29,10 @@ function grantAccess() {
     $('#userName').html(fbName);
     $('#userInfo').show();
     $('#submitMsg').attr('disabled', false);
+    $('#submitMsg').val('Enviar');
+    $('#submitRSVP').attr('disabled', false);
+    $('#submitRSVP').val('Enviar');
+    
+    //location.reload();
     
 }

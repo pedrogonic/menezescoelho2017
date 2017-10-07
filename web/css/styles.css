@@ -341,6 +341,36 @@ body {
     width: 30%;
 }
 
+.rsvpField {
+    width: 300px;
+}
+
+.rsvpIcons {
+    width: 20px;
+    cursor: pointer;
+}
+
+#rsvpArticle {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#submitMsg:disabled {
+    cursor:not-allowed;
+}
+
+#errorMsg {
+    color: red;
+}
+
+#successMsg {
+    color: green;
+}
+
+#submitMsg {
+    cursor:pointer;
+}
+
 /**
  *  Facebook
  */
