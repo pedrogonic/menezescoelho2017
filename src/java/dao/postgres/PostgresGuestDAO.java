@@ -2,14 +2,17 @@ package dao.postgres;
 
 import dao.GuestDAO;
 import dto.Guest;
+import dto.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import lib.Secret;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class PostgresGuestDAO implements GuestDAO{
     
     private final java.sql.Connection con;
@@ -56,6 +59,41 @@ public class PostgresGuestDAO implements GuestDAO{
             return guests;
         else
             return null;
+    }
+    
+    @Override
+    public List<Guest> getList() {
+        
+        PreparedStatement ps = null;
+        ResultSet rs;
+        List<Guest> guests = new ArrayList<>();
+        
+        try {
+            
+            
+            String query = "select  \n" +
+                            "guestID \n" +
+                            ",guestname \n" +
+                            ",userid\n" +
+                            "from " + Secret.GUEST_TABLE + ";";
+
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                guests.add(new Guest(rs.getInt(1),
+                                    rs.getString(2),
+                                    new User(rs.getString(3))));
+            }
+                    
+            
+        } catch (SQLException e) { e.printStackTrace(); }
+        finally {
+            if (ps != null) { try {ps.close();}catch(SQLException e){}}
+        }
+        
+        return guests;
+        
     }
     
 }

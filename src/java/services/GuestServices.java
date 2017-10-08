@@ -1,6 +1,7 @@
 package services;
 
 import dao.DAOFactory;
+import dao.UserDAO;
 import dto.Guest;
 import dto.User;
 import java.util.ArrayList;
@@ -27,6 +28,35 @@ public class GuestServices {
             
         }
         
+    }
+    
+    /**
+     * Method for getting the guest list
+     * @return 
+     */
+    public static List<Guest> getGuestList() {
+        
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) {
+            
+            List<Guest> guests = daoFactory.getGuestDAO().getList();
+            
+            UserDAO userDAO = daoFactory.getUserDAO();
+            guests.forEach((guest) -> guest.setResponsible(userDAO.getUser(guest.getResponsible().getUserID())));
+            
+            return guests;
+            
+        }
+        
+    }
+    
+    /**
+     * Method for printing the guest in console
+     * @param guest 
+     */
+    public static void printGuest(Guest guest) {
+        System.out.println(guest.getGuestName() + "," 
+                                + guest.getResponsible().getUserName() + "," 
+                                + guest.getResponsible().getFbUserID());
     }
     
     /**

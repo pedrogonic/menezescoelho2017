@@ -8,6 +8,7 @@ public class Guest {
     private int guestID;
     private String guestName;
     private String userID;
+    private User responsible;
 
     
     /**
@@ -32,6 +33,19 @@ public class Guest {
         this.guestName = guestName;
         this.userID = userID;
     }
+
+    /**
+     * Constructor for guest list
+     * @param guestID
+     * @param guestName
+     * @param responsible 
+     */
+    public Guest(int guestID, String guestName, User responsible) {
+        this.guestID = guestID;
+        this.guestName = guestName;
+        this.responsible = responsible;
+    }
+
     
     public int getGuestID() {
         return guestID;
@@ -56,5 +70,15 @@ public class Guest {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    public User getResponsible() {
+        return responsible;
+    }
+
+    public void setResponsible(User responsible) {
+        this.responsible = responsible;
+    }
+ 
+    
     
 }
