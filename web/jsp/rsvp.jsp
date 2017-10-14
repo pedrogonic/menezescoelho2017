@@ -58,6 +58,7 @@
                     <input type="hidden" id="guestsNames" name="guestsNames"/>
                     
                     <article id="rsvpArticle">
+                        <h1><fmt:message bundle="${text}" key="page.rsvp.guests"/></h1>
                         <div id="fieldsDiv">
                             <p id="rsvp1P"><input type="text" id="rsvp1" class="rsvpField"/></p>
                         </div>
@@ -66,6 +67,12 @@
                             <span id="add"><img class="rsvpIcons" src="${contextPath}/img/icons/plus.png" alt=""/></span>
                         </div>
                     </article>
+                    
+                    <article class="rsvpRadio">
+                        <input type="radio" name="attending" value="true" checked>Presente(s)
+                        <input type="radio" name="attending" value="false">Ausente(s)
+                    </article>
+                    
                     <article>
                         <input type="submit" 
                                    id="submitMsg" 

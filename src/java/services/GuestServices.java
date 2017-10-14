@@ -72,7 +72,8 @@ public class GuestServices {
             return null;
         
         return splitGuests(new Guest(request.getParameter("guestsNames")
-                                    , user.getUserID()));
+                                    , user.getUserID()
+                                    , Boolean.parseBoolean(request.getParameter("attending"))));
         
     }
     
@@ -84,7 +85,7 @@ public class GuestServices {
         List<Guest> guests = new ArrayList<Guest>();
 
         for (String name : guest.getGuestName().split(";")) 
-            guests.add(new Guest(name, guest.getUserID()));
+            guests.add(new Guest(name, guest.getUserID(), guest.isAttending()));
 
         return guests;
     

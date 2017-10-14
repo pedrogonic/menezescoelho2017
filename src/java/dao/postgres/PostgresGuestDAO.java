@@ -31,12 +31,14 @@ public class PostgresGuestDAO implements GuestDAO{
             
                 String query = "INSERT INTO " + Secret.GUEST_TABLE 
                                 + " (guestname"
-                                + " ,userid) "
-                                + " VALUES (?,?);";
+                                + " ,userid"
+                                + " ,attending) "
+                                + " VALUES (?,?,?);";
 
                 ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 ps.setString(1, guest.getGuestName());
                 ps.setObject(2, UUID.fromString(guest.getUserID()));
+                ps.setBoolean(3, guest.isAttending());
                 ps.executeUpdate();
                 
                 try (ResultSet generatedKeys = ps.getGeneratedKeys()) {

@@ -352,6 +352,10 @@ body {
 
 #rsvpArticle {
     margin-top: 50px;
+    /*margin-bottom: 50px;*/
+}
+
+.rsvpRadio {
     margin-bottom: 50px;
 }
 

@@ -9,6 +9,7 @@ public class Guest {
     private String guestName;
     private String userID;
     private User responsible;
+    private boolean attending;
 
     
     /**
@@ -17,10 +18,11 @@ public class Guest {
      * @param guestName
      * @param userID 
      */
-    public Guest(int guestID, String guestName, String userID) {
+    public Guest(int guestID, String guestName, String userID, boolean attending) {
         this.guestID = guestID;
         this.guestName = guestName;
         this.userID = userID;
+        this.attending = attending;
     }
 
     /**
@@ -29,9 +31,10 @@ public class Guest {
      * @param guestName
      * @param userID 
      */
-     public Guest(String guestName, String userID) {
+     public Guest(String guestName, String userID, boolean attending) {
         this.guestName = guestName;
         this.userID = userID;
+        this.attending = attending;
     }
 
     /**
@@ -77,6 +80,14 @@ public class Guest {
 
     public void setResponsible(User responsible) {
         this.responsible = responsible;
+    }
+
+    public boolean isAttending() {
+        return attending;
+    }
+
+    public void setAttending(boolean attending) {
+        this.attending = attending;
     }
  
     
