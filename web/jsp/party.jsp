@@ -29,8 +29,17 @@
                 
                 <article class="maps">
                     
+                    <c:choose>
+                        <c:when test="${mobile}">
+                            <c:set var="mapsWidth" value="100%"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="mapsWidth" value="600"/>
+                        </c:otherwise>
+                    </c:choose>
+                    
                     <iframe
-                        width="600"
+                        width="<c:out value="${mapsWidth}"/>"
                         height="450"
                         frameborder="0" style="border:0"
                         src="https://www.google.com/maps/embed/v1/place?key=<c:out value="${mapsAPIKey}"></c:out>

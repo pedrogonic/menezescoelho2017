@@ -69,8 +69,8 @@
                     </article>
                     
                     <article class="rsvpRadio">
-                        <input type="radio" name="attending" value="true" checked>Presente(s)
-                        <input type="radio" name="attending" value="false">Ausente(s)
+                        <input type="radio" name="attending" value="true" checked><span class="attending">Presente(s)</span>
+                        <input type="radio" name="attending" value="false"><span class="attending">Ausente(s)</span>
                     </article>
                     
                     <article>

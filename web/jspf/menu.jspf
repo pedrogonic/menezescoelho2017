@@ -17,11 +17,11 @@
         
         <article id="lang">
              
-            <input type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('pt_BR')">
+            <input class="langRadio" type="radio" name="lang" id="lang_pt_BR" value="pt_BR" onclick="changeLocale('pt_BR')">
                 <img class="flag" id="flag_pt_BR" onclick="changeLocale('pt_BR')" src="${contextPath}/img/flags/BR.png" alt=""/>
             </input>
             
-            <input type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('es_AR')">
+            <input class="langRadio" type="radio" name="lang" id="lang_es_AR" value="es_AR" onclick="changeLocale('es_AR')">
                 <img class="flag" id="flag_es_AR" onclick="changeLocale('es_AR')" src="${contextPath}/img/flags/AR.png" alt=""/>
             </input>
         

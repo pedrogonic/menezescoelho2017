@@ -36,7 +36,7 @@ html {
     }
     
     .second {
-        font-size: 4em;
+        font-size: 2em;
     }
     
     .fbProfilePic {
@@ -49,6 +49,24 @@ html {
 
     .footer {
         font-size: .7em;
+    }
+    
+    input[type=radio] {
+        width: 50px;
+        height: 3em;
+    }
+    
+    .attending {
+        font-size: 1.5em;
+    }
+    
+    .rsvpIcons{
+        width: 50px;
+    }
+    
+    #submitMsg {
+        height: 50px;
+        font-size: 1.2em;
     }
     
 }
@@ -104,7 +122,6 @@ html {
 
 .second {
     grid-column-start: middle;
-    grid-column-end: end;
     grid-row-start: main;
 }
 
@@ -138,7 +155,7 @@ html {
     width: 100%;
 }
 
-input[type=radio] {
+.langRadio {
     display:none;
 }
 
@@ -188,4 +205,21 @@ input[type=radio] {
     float: none;
     margin-right: 0;
     margin-left: 0;
+}
+
+/** 
+ *  Content
+ */
+
+.ident {
+    text-indent: 0px;
+}
+
+input[type=text] {
+    -webkit-appearance: none; -moz-appearance: none;
+    display: block;
+    margin: 0;
+    width: 100%; height: 40px;
+    line-height: 40px; font-size: 17px;
+    border: 1px solid #bbb;
 }
