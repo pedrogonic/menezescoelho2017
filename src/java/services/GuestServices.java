@@ -54,9 +54,10 @@ public class GuestServices {
      * @param guest 
      */
     public static void printGuest(Guest guest) {
-        System.out.println(guest.getGuestName() + "," 
-                                + guest.getResponsible().getUserName() + "," 
-                                + guest.getResponsible().getFbUserID());
+        System.out.println( (guest.isAttending() ? "Presente" : "Ausente") + ","
+                            + guest.getGuestName() + "," 
+                            + guest.getResponsible().getUserName() + "," 
+                            + guest.getResponsible().getFbUserID());
     }
     
     /**

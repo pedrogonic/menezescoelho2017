@@ -43,10 +43,11 @@ public class Guest {
      * @param guestName
      * @param responsible 
      */
-    public Guest(int guestID, String guestName, User responsible) {
+    public Guest(int guestID, String guestName, User responsible, boolean attending) {
         this.guestID = guestID;
         this.guestName = guestName;
         this.responsible = responsible;
+        this.attending = attending;
     }
 
     

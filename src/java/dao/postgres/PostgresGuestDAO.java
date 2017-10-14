@@ -76,6 +76,7 @@ public class PostgresGuestDAO implements GuestDAO{
             String query = "select  \n" +
                             "guestID \n" +
                             ",guestname \n" +
+                            ",attending \n" +
                             ",userid\n" +
                             "from " + Secret.GUEST_TABLE + ";";
 
@@ -85,7 +86,8 @@ public class PostgresGuestDAO implements GuestDAO{
             while(rs.next()) {
                 guests.add(new Guest(rs.getInt(1),
                                     rs.getString(2),
-                                    new User(rs.getString(3))));
+                                    new User(rs.getString(4)),
+                                    rs.getBoolean(3)));
             }
                     
             
