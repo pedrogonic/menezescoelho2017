@@ -2,8 +2,23 @@ package services;
 
 import dao.DAOFactory;
 import dto.BestPerson;
+import java.util.List;
 
 public class BestPersonServices {
+    
+    /**
+     * Method for getting all bestmen
+     * @return 
+     */
+    public static List<BestPerson> getList() {
+        
+        try (DAOFactory daoFactory = DAOFactory.getDAOFactory()) { 
+            
+            return daoFactory.getBestPersonDAO().getList();
+            
+        }
+        
+    }
     
     /**
      * Method for getting Best Person information from BD

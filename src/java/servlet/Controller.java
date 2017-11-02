@@ -1,5 +1,6 @@
 package servlet;
 
+import dto.BestPerson;
 import dto.Message;
 import dto.User;
 import java.io.IOException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lib.Utils;
+import services.BestPersonServices;
 import services.GuestServices;
 import services.MessageServices;
 import services.UserServices;
@@ -52,6 +54,12 @@ public class Controller extends HttpServlet {
                     session.setAttribute("messageList", messageList);
 //                    session.setAttribute("messagePosted", messagePosted);
 //                    session.setAttribute("messageReplied", messageReplied);
+                    break;
+                    
+                case BESTMEN:
+                    
+                    List<BestPerson> bestPersonList = BestPersonServices.getList();
+                    session.setAttribute("bestPersonList", bestPersonList);
                     break;
                     
             }

@@ -39,4 +39,18 @@
 	</attribute>
     </tag>
     
+    <tag>
+        <name>BestMenTag</name>
+        <tag-class>tags.BestmenTag</tag-class>
+        <body-content>empty</body-content>
+        <description>custom tag for displaying BestPerson dto</description>
+        
+        <attribute>
+            <name>bestPerson</name>
+            <required>true</required>
+            <type>dto.BestPerson</type>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    
 </taglib>

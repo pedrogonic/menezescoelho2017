@@ -33,7 +33,7 @@ public class Utils {
     public enum Page implements AutoCloseable {
         INDEX ("jsp/index.jsp"), ABOUT ("jsp/about.jsp"), RSVP ("jsp/rsvp.jsp")
         , MSG ("jsp/messages.jsp"), CEREMONY ("jsp/ceremony.jsp"), PARTY ("jsp/party.jsp")
-        , SHOWER ("jsp/index.jsp"), BESTMEN ("jsp/index.jsp"), BESTMEN_INFO ("jsp/bestmenInfo.jsp"), GIFT ("jsp/gift.jsp")
+        , SHOWER ("jsp/index.jsp"), BESTMEN ("jsp/bestmen.jsp"), BESTMEN_INFO ("jsp/bestmenInfo.jsp"), GIFT ("jsp/gift.jsp")
         , ERROR ("jsp/error.jsp"), SURPRISE ("jsp/surprise.jsp");
         
         private final String pageName;
