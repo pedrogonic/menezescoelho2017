@@ -23,7 +23,7 @@
                 
                 <h2><fmt:message bundle="${text}" key="page.bestmen.parents"/></h2>
                 
-                <p>Agradecemos o apoio em todos os momentos (inclusive agora, nessa fase de obras e preparativos para casamento), o carinho de sempre, os conselhos, as orientações e por serem o maior exemplo que podemos de um lar.</p>
+                <p>Agradecemos o apoio em todos os momentos (inclusive agora, nessa fase de obras e preparativos para casamento), o carinho de sempre, os conselhos, as orientações e por serem o maior exemplo que podemos ter de um lar.</p>
             
                 <h2><fmt:message bundle="${text}" key="page.bestmen.title"/></h2>
                 

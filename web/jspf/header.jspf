@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page  contentType="text/html" pageEncoding="UTF-8" %>
 
 <section class="banner">
@@ -35,9 +36,22 @@
             </article>
             
             <article class="logo_left">
-                <fmt:message bundle="${text}" key="banner.left"/>
-                <c:out value="${' '}"/><c:out value="${daysToGo}"/><c:out value="${' '}"/>
-                <fmt:message bundle="${text}" key="banner.days"/>
+                <c:choose>
+                    <c:when test="${daysToGo > 1}" >
+                        <fmt:message bundle="${text}" key="banner.left"/>
+                        <c:out value="${' '}"/><c:out value="${daysToGo}"/><c:out value="${' '}"/>
+                        <fmt:message bundle="${text}" key="banner.days"/>
+                    </c:when>
+                    <c:when test="${daysToGo == 1}" >
+                        <fmt:message bundle="${text}" key="banner.tomorrow"/>
+                    </c:when>
+                    <c:when test="${daysToGo == 0}" >
+                        <fmt:message bundle="${text}" key="banner.today"/>
+                    </c:when>
+                    <c:when test="${daysToGo < 0}" >
+                        <fmt:message bundle="${text}" key="banner.past"/>
+                    </c:when>
+                </c:choose>
             </article>
 
             <article class="logo_bot">
